@@ -1,0 +1,690 @@
+/*  ------------------------------------------------------------
+
+    Gawain - minimal creative landing page
+
+    Version     1.2.1
+    URL         http://demo.happytodesign.com/gawain/landing    
+    Author      happytodesign.com
+
+------------------------------------------------------------  */
+
+// Load font
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700);
+
+// Normalize css
+@import 'normalize.scss';
+
+// Core variables
+@import 'variables.scss';
+
+// Mixins
+@import 'mixins.scss';
+
+// Core components
+@import 'scaffolding.scss';
+@import 'type.scss';
+@import 'buttons.scss';
+@import 'inputs.scss';
+@import 'forms.scss';
+@import 'grid.scss';
+
+// Utilities
+@import 'utilities.scss';
+@import 'responsive-utilities.scss';
+
+/*  ------------------------------------------------------------  */
+/*  Navigation bar
+/*  ------------------------------------------------------------  */
+
+.navbar {
+    -webkit-backface-visibility: hidden;
+    background-color: inherit;
+    padding: 20px 0;
+    position: relative;
+    transition: background-color 0.2s ease-in-out, opacity 0.4s 0.4s ease-in-out, padding 0.2s ease-in-out, transform 0.4s ease-in-out;
+    z-index: 5;
+
+    &.fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        &[data-scrolling="true"] {
+            background-color: rgba( #111115, 0.95 );
+            padding: 15px 0;
+        }
+    }
+
+    &.animated {
+        opacity: 0;
+    }
+
+    .open & {
+        transform: translateY(-100%);
+    }
+
+    @media ( min-width: $screen-tablet-min ) {
+        padding: 30px 0;
+    }
+    @media ( min-width: $screen-desktop-min ) {
+        padding: 40px 0;
+    }
+
+    @media ( max-width: $screen-tablet-max ) {
+        z-index: 4; /* We use this to communicate with js */
+
+        &.open.inverse {
+            background-color: rgba( #11111a, 0.95 );
+        }
+    }
+}
+
+.navbar-logo {
+    border-bottom: 0;
+    color: #44444f;
+    font-size: 24px !important;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -1px;
+
+    &:active,
+    &:hover {
+        color: #22222f;
+    }
+
+    .inverse & {
+        color: #eee;
+
+        &:active,
+        &:hover {
+            color: #fff;
+        }
+    }
+
+    @media ( max-width: $screen-tablet-max ) {
+        position: relative;
+        top: -2px;
+    }
+}
+
+.navbar-nav-toggle {
+    background: none;
+    border: 0;
+    display: block; /* Remove extra margin from below the <button> element */
+    padding: 6px 5px 5px;
+
+    .icon-bar {
+        background-color: #44444f;
+        border-radius: 1px;
+        display: block;
+        height: 3px;
+        width: 24px;
+
+        + .icon-bar {
+            margin-top: 4px;
+        }
+
+        .inverse & {
+            background-color: #f4f4f4;
+        }
+    }
+}
+
+.navbar-nav {
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li a:not(.button) {
+            @include link-color( rgba( #33333f, 0.5 ), #33333f, 0.2, 0.4 );
+            border-bottom: 0;
+            display: block;
+
+            .inverse & {
+                @include link-color( rgba( #fff, 0.6 ), #fff, 0.2, 0.4 );
+            }
+        }
+    }
+
+    @media ( max-width: $screen-tablet-max ) {
+        margin: 20px -20px 0;
+
+        @media ( min-width: $screen-tablet-min ) {
+            margin: 20px -30px 0;
+        }
+
+        ul li {
+            display: block;
+
+            a,
+            .button {
+                padding: 10px 20px;
+
+                @media ( min-width: $screen-tablet-min ) {
+                    padding: 10px 30px;
+                }
+            }
+
+            .button {
+                border-radius: 0;
+                font-weight: normal;
+                margin-top: 10px;
+                width: 100%;
+            }
+        }
+    }
+
+    @media ( min-width: $screen-desktop-min ) {
+
+        ul {
+            @include inline-block-reset();
+
+            li {
+                display: inline-block;
+                vertical-align: middle;
+
+                a {
+                    font-size: 16px;
+                    font-weight: 600;
+                    padding: 7px 20px;
+                }
+
+                .button {
+                    margin: 0 20px;
+                }
+                &:last-child .button {
+                    margin-right: 0;
+                }
+                &:first-child .button {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
+
+
+/*  ------------------------------------------------------------  */
+/*  Responsive navbar navigation
+/*  This is separated from navbar for readability
+/*  ------------------------------------------------------------  */
+
+.navbar {
+    @media ( min-width: $screen-desktop-min ) {
+        .container {
+            @include inline-block-reset();
+            @include justify-content();
+
+            > * {
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.navbar-header {
+    @media ( max-width: $screen-tablet-max ) {
+        @include inline-block-reset();
+        @include justify-content();
+
+        > * {
+            vertical-align: middle;
+        }
+    }
+
+    @media ( min-width: $screen-desktop-min ) {
+        display: inline-block;
+    }
+}
+
+.navbar-nav-toggle {
+    @media ( min-width: $screen-desktop-min ) {
+        display: none;
+    }
+}
+
+.navbar-nav {
+    @media ( max-width: $screen-tablet-max ) {
+        display: none;
+    }
+    @media ( min-width: $screen-desktop-min ) {
+        display: inline-block !important;
+    }
+}
+
+
+/*  ------------------------------------------------------------  */
+/*  Large intro with background image
+/*  ------------------------------------------------------------  */
+
+html, body {
+    height: 100%;
+}
+.intro {
+    background: #11111a url('../img/intro-background.jpg') center bottom no-repeat;
+    background-size: cover;
+    height: 100%;
+    padding: 0 20px;
+    position: relative;
+}
+.intro-copy {
+    position: relative;
+    top: 50%;
+    z-index: 1;
+
+    h1 {
+        color: #f4f4f4;
+        margin: 0;
+        transform: translateY(-50%);
+        
+        @media ( min-width: $screen-tablet-min ) {
+            text-align: center;
+        }
+    }
+}
+.intro-overlay {
+    background-color: rgba(17, 17, 26, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: background-color 0.4s ease-in-out;
+
+    [data-loaded="true"] & {
+        background-color: rgba(17, 17, 26, 0.8);
+    }
+}
+
+
+/*  ------------------------------------------------------------  */
+/*  Slider
+/*  ------------------------------------------------------------  */
+
+.slides,
+.flex-control-nav,
+.flex-direction-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.slider {
+    position: relative;
+}
+.slides > li {
+    -webkit-backface-visibility: hidden;
+    display: none;
+}
+
+.flex-control-nav {
+    position: absolute;
+    bottom: -20px;
+    text-align: center;
+    width: 100%;
+
+    @media ( min-width: $screen-tablet-min ) {
+        bottom: -30px;
+    }
+}
+.flex-control-nav li {
+    display: inline-block;
+    margin: 0 4px;
+}
+.flex-control-paging li a {
+    background-color: #11111f;
+    border-radius: 20px;
+    color: transparent;
+    cursor: pointer;
+    display: block;
+    font: #{0/0} a;
+    height: 10px;
+    opacity: 0.25;
+    width: 10px;
+}
+.flex-control-paging li a:hover {
+    opacity: 0.5;
+}
+.flex-control-paging li a.flex-active {
+    opacity: 0.75;
+}
+
+
+/*  ------------------------------------------------------------  */
+/*  Showcase
+/*  ------------------------------------------------------------  */
+
+.showcase {
+    @include inline-block-reset();
+    border-bottom: 1px solid rgba( #8b99a5, 0.25 );
+    overflow: hidden;
+    position: relative;
+
+    > * {
+        vertical-align: middle;
+    }
+
+    @media ( min-width: $screen-desktop-min ) {
+        + .showcase {
+            margin-top: 160px;
+        }
+    }
+}
+.showcase-image {
+    display: none;
+    position: absolute;
+    top: 0;
+
+    &:first-child {
+        left: 25%;
+        transform: translateX(-50%);
+    }
+    &:last-child {
+        right: 25%;
+        transform: translateX(50%);
+    }
+
+    @media ( min-width: $screen-desktop-min ) {
+        display: block;
+        max-width: 60%;
+    }
+}
+.showcase-description {
+    margin: 20px 0;
+
+    @media ( min-width: $screen-tablet-min ) {
+        margin: 40px 0;
+    }
+
+    @media ( min-width: $screen-desktop-min ) {
+        margin: 80px 0;
+        width: 40%;
+
+        &:last-child {
+            margin-left: 60%;
+        }
+    }
+}
+
+
+/*  ------------------------------------------------------------  */
+/*  Testimonials
+/*  ------------------------------------------------------------  */
+
+.testimonial {
+    border: 0;
+    color: inherit;
+    margin: 0 0 20px;
+    padding-left: 0;
+
+    p {
+        font-size: 24px;
+        font-weight: 200;
+        line-height: 1.45;
+
+        @media ( min-width: $screen-tablet-min ) {
+            font-size: 30px;
+        }
+        @media ( min-width: $screen-desktop-min ) {
+            font-size: 36px;
+        }
+    }
+
+    footer {
+        color: #8b99a5;
+        margin-top: 40px;
+
+        cite {
+            font-style: normal;
+        }
+
+        .avatar {
+            display: none;  
+        }
+
+        @media ( min-width: $screen-tablet-min ) {
+            .avatar {
+                display: inline-block;
+                margin-right: 20px;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    @media ( min-width: $screen-tablet-min ) {
+        text-align: center;
+    }
+}
+
+
+/*  ------------------------------------------------------------  */
+/*  Footer
+/*  ------------------------------------------------------------  */
+
+.footer {
+    background-color: #f3f4f6;
+    font-size: 16px;
+    overflow: auto;
+
+    .grid > * {
+        font-size: 16px;
+    }
+}
+
+[class*="icon-social"] {
+    background-image: url('../img/social-icons.png');
+    border-bottom: 0;
+    display: inline-block;
+    height: 32px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease-in-out;
+    vertical-align: middle;
+    width: 32px;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    + [class*="icon-social"] {
+        margin-left: 5px;
+    }
+
+    @media only screen and ( -webkit-min-device-pixel-ratio: 2 ), only screen and ( min-resolution: 192dpi ) { 
+        background-image: url('../img/social-icons_2x.png');
+        background-size: 128px 32px;
+    }
+}
+.icon-social-twitter {
+    background-position: 0 0;
+}
+.icon-social-facebook {
+    background-position: -32px 0;
+}
+.icon-social-instagram {
+    background-position: -64px 0;
+}
+.icon-social-google {
+    background-position: -96px 0;
+}
+
+
+/*  ------------------------------------------------------------  */
+/*  Contact form
+/*  ------------------------------------------------------------  */
+
+.content-wrapper {
+    background-color: inherit;
+    position: relative;
+    right: 0; // Firefox
+    transition: transform 0.4s ease-in-out;
+    z-index: 2;
+
+    .open & {
+        transform: translateX(-98%);
+    }
+}
+
+.content-inner-wrapper {
+    background-color: inherit;
+    overflow: auto;
+}
+
+.contact-wrapper {
+    -webkit-backface-visibility: hidden;
+    background-color: #11111a;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translate3d(0, 0, 0);
+    z-index: 0;
+
+    .close {
+        background: none;
+        border: 0;
+        color: #fff;
+        font-size: 36px;
+        line-height: 1;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        @media ( min-width: $screen-tablet-min ) {
+            top: 20px;
+            right: 20px;
+        }
+    }
+}
+
+.contact-form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.contact-form {
+    max-width: 500px;
+    min-width: 280px;
+
+    .form-group {
+        margin-bottom: 20px;
+
+        &:not( [class*="has-"] ) {
+            .input:not(:focus) {
+                border-color: transparent;
+            }
+        }
+    }
+
+    .button {
+        float: right;
+    }
+}
+
+
+/*  ------------------------------------------------------------  */
+/*  Homepage
+/*  ------------------------------------------------------------  */
+
+.home {
+    .navbar {
+        background-color: transparent;
+    }
+    .content-wrapper {
+        height: 100%;
+    }
+}
+
+
+/*  ------------------------------------------------------------  */
+/*  Blog
+/*  ------------------------------------------------------------  */
+
+.blog {
+    background-color: #f3f4f6;
+
+    // .navbar {
+    //     background-color: #f3f4f6;
+    //     position: relative;
+    // }
+
+    // .content-inner-wrapper {
+    //     background-color: #f3f4f6;
+    // }
+
+    // .navbar-logo {
+    //     color: #33333f;
+    // }
+
+    // .navbar-nav ul li a:not(.button) {
+    //     @include link-color( rgba( #33333f, 0.7 ), #33333f, 0.2, 0.4 );
+    // }
+}
+.post {
+    background-color: #fff;
+    border-color: rgba( #8b99a5, 0.25 );
+    border-style: solid;
+    border-width: 1px 0;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 20px;
+    // padding: 80px 140px;
+
+    @media ( min-width: $screen-tablet-min ) {
+        border-radius: 2px;
+        border-width: 1px;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 20px 40px;
+    }
+
+    @media ( min-width: $screen-desktop-min ) {
+        padding: 80px 140px;
+    }
+}
+.post + .post {
+    margin-top: 40px;
+}
+.post-image {
+    margin: -21px;
+    margin-bottom: 0;
+
+    @media ( min-width: $screen-tablet-min ) {
+        margin: -21px -41px;
+        margin-bottom: 40px;
+
+        img {
+            border-radius: 2px 2px 0 0;
+        }
+    }
+
+    @media ( min-width: $screen-desktop-min ) {
+        margin: -81px -141px 80px;
+    }
+}
+.post-title {
+    margin-bottom: 40px;
+
+    a {
+        @include link-color( #33333f, rgba( #33333f, 0.8 ) );
+
+        border-bottom: 0;
+    }
+}
+.post-meta {
+    margin-top: 40px;
+}
+
+.comments {
+    border-top: 1px solid rgba( #8b99a5, 0.25 );
+    margin-top: 40px;
+    padding-top: 40px;
+
+    @media ( min-width: $screen-desktop-min ) {
+        margin-top: 80px;
+        padding-top: 80px;
+    }
+}

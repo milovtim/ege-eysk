@@ -1,0 +1,29 @@
+/*  ------------------------------------------------------------  */
+/*  Utilities
+/*  ------------------------------------------------------------  */
+
+.tiny-margin {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.small-margin {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.medium-margin {
+    @extend .small-margin;
+
+    @media ( min-width: $screen-tablet-min ) {
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+}
+.large-margin {
+    @extend .small-margin;
+    @extend .medium-margin;
+
+    @media ( min-width: $screen-desktop-min ) {
+        margin-top: 160px;
+        margin-bottom: 160px;
+    }
+}

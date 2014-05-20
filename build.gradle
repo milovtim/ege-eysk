@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.monochromeroad.gradle-plugins:gradle-aws-s3-sync:0.5"
+    }
+}
+
+import com.monochromeroad.gradle.plugin.aws.s3.S3Sync
+
+ext {
+    aws = [access: 'AKIAIV6TWXRXNOLRQN6A', secret: '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']
+}
+
+task deploy(type: S3Sync) {
+    description = "Deploys Repetitor bucket"
+
+    accessKey aws.access
+    secretKey aws.secret
+
+    configFile "synchronizer.properties"
+
+    from "site/main/"
+    into "/repetitor/site"
+
+    acl com.monochromeroad.gradle.plugin.aws.s3.ACL.PublicRead
+}

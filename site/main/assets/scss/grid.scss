@@ -1,0 +1,154 @@
+/*  ------------------------------------------------------------  */
+/*  Container and grid classes
+/*  ------------------------------------------------------------  */
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1140px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    @media ( min-width: $screen-tablet-min ) {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    @media ( min-width: $screen-desktop-min ) {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+.grid {
+    margin-left: -20px;
+
+    > * {
+        padding-left: 20px;
+    }
+
+    @media ( min-width: $screen-tablet-min ) {
+        @include inline-block-reset();
+
+        margin-left: -40px;
+
+        > * {
+            padding-left: 40px;
+            vertical-align: top;
+        }
+    }
+    @media ( min-width: $screen-desktop-min ) {
+        margin-left: -60px;
+
+        > * {
+            padding-left: 60px;
+        }
+    }
+}
+.grid-centered > * {
+    vertical-align: middle;
+}
+
+.grid-spaced {
+    margin-bottom: -20px;
+
+    > * {
+        margin-bottom: 20px;
+    }
+
+    @media ( min-width: $screen-tablet-min ) {
+        margin-bottom: -40px;
+
+        > * {
+            margin-bottom: 40px;
+        }
+    }
+    @media ( min-width: $screen-desktop-min ) {
+        margin-bottom: -60px;
+
+        > * {
+            margin-bottom: 60px;
+        }
+    }
+}
+
+.grid-justified {
+    @include justify-content();
+}
+
+@media ( min-width: $screen-tablet-min ) {
+    .tablet-1 {
+        width: percentage( 1 / 12 );
+    }
+    .tablet-2 {
+        width: percentage( 2 / 12 );
+    }
+    .tablet-3 {
+        width: percentage( 3 / 12 );
+    }
+    .tablet-4 {
+        width: percentage( 4 / 12 );
+    }
+    .tablet-5 {
+        width: percentage( 5 / 12 );
+    }
+    .tablet-6 {
+        width: percentage( 6 / 12 );
+    }
+    .tablet-7 {
+        width: percentage( 7 / 12 );
+    }
+    .tablet-8 {
+        width: percentage( 8 / 12 );
+    }
+    .tablet-9 {
+        width: percentage( 9 / 12 );
+    }
+    .tablet-10 {
+        width: percentage( 10 / 12 );
+    }
+    .tablet-11 {
+        width: percentage( 11 / 12 );
+    }
+    .tablet-12 {
+        width: percentage( 12 / 12 );
+    }
+}
+
+@media ( min-width: $screen-desktop-min ) {
+    .desktop-1 {
+        width: percentage( 1 / 12 );
+    }
+    .desktop-2 {
+        width: percentage( 2 / 12 );
+    }
+    .desktop-3 {
+        width: percentage( 3 / 12 );
+    }
+    .desktop-4 {
+        width: percentage( 4 / 12 );
+    }
+    .desktop-5 {
+        width: percentage( 5 / 12 );
+    }
+    .desktop-6 {
+        width: percentage( 6 / 12 );
+    }
+    .desktop-7 {
+        width: percentage( 7 / 12 );
+    }
+    .desktop-8 {
+        width: percentage( 8 / 12 );
+    }
+    .desktop-9 {
+        width: percentage( 9 / 12 );
+    }
+    .desktop-10 {
+        width: percentage( 10 / 12 );
+    }
+    .desktop-11 {
+        width: percentage( 11 / 12 );
+    }
+    .desktop-12 {
+        width: percentage( 12 / 12 );
+    }
+}
