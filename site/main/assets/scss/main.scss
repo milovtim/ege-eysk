@@ -355,7 +355,7 @@ html, body {
 /*  Showcase
 /*  ------------------------------------------------------------  */
 
-.showcase {
+.showStaff {
     @include inline-block-reset();
     border-bottom: 1px solid rgba( #8b99a5, 0.25 );
     overflow: hidden;
@@ -366,7 +366,7 @@ html, body {
     }
 
     @media ( min-width: $screen-desktop-min ) {
-        + .showcase {
+        + .showStaff {
             margin-top: 160px;
         }
     }

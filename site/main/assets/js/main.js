@@ -18,7 +18,6 @@ $(document).ready(function () {
     // Wait for background images to load
     // --------------------------------------------------
     $('.background-image').each(function () {
-
         var $this = $(this),
             $preload = $('<img/>'),
             background = $this.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
@@ -68,14 +67,14 @@ $(window).on('load', function () {
 
     'use strict';
 
-    $('#portfolio .slider').flexslider({
+    $('#teachers .slider').flexslider({
         pauseOnHover: true,
         directionNav: false
     });
 
     $('#testimonials .slider').flexslider({
         controlNav: false,
-        directionNav: false,
+        directionNav: false
     });
 
     $('nav').smartScroll({

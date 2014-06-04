@@ -7,7 +7,7 @@
     Author      happytodesign.com
 
 ------------------------------------------------------------  */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700);
+@import url(http://fonts.googleapis.com/css?family=Lobster|Open+Sans:400italic,400,300,600,700&subset=latin,cyrillic);
 /*  ------------------------------------------------------------  */
 /*  Normalize.css v3.0.0
 /*  http://git.io/normalize
@@ -354,6 +354,10 @@ h6 {
     }
 }
 
+.grid .tablet-4 {
+    text-align: center;
+}
+
 p {
     margin: 20px 0;
 }
@@ -613,7 +617,7 @@ textarea.input {
 }
 
 .grid-justified {
-    font-size: 0.04px\9;
+    font-size: 0.04px;
     text-align: justify;
 }
 
@@ -756,7 +760,6 @@ textarea.input {
 /*  ------------------------------------------------------------  */
 /*  Responsive utilities
 /*  ------------------------------------------------------------  */
-.visible-on-phone,
 .visible-on-phone,
 .visible-on-tablet {
     display: none !important;
@@ -1032,7 +1035,7 @@ textarea.input {
 @media (min-width: 769px) {
     .navbar .container {
         font-size: 0;
-        font-size: 0.04px\9;
+        font-size: 0.04px;
         text-align: justify;
     }
 
@@ -1059,7 +1062,7 @@ textarea.input {
 @media (max-width: 768px) {
     .navbar-header {
         font-size: 0;
-        font-size: 0.04px\9;
+        font-size: 0.04px;
         text-align: justify;
     }
 
@@ -1115,7 +1118,7 @@ html, body {
 }
 
 .intro {
-    background: #11111a url("../img/intro-background.jpg") center bottom no-repeat;
+    background: #11111a url("../img/ege-intro-bg.jpg") center bottom no-repeat;
     background-size: cover;
     height: 100%;
     padding: 0 20px;
@@ -1129,6 +1132,7 @@ html, body {
 }
 
 .intro-copy h1 {
+    font-family: 'Lobster', cursive;
     color: #f4f4f4;
     margin: 0;
     -webkit-transform: translateY(-50%);
@@ -1218,24 +1222,24 @@ html, body {
 /*  ------------------------------------------------------------  */
 /*  Showcase
 /*  ------------------------------------------------------------  */
-.showcase {
+.showStaff {
     font-size: 0;
     border-bottom: 1px solid rgba(139, 153, 165, 0.25);
     overflow: hidden;
     position: relative;
 }
 
-.showcase > * {
+.showStaff > * {
     display: inline-block;
     font-size: 1rem;
 }
 
-.showcase > * {
+.showStaff > * {
     vertical-align: middle;
 }
 
 @media (min-width: 769px) {
-    .showcase + .showcase {
+    .showStaff + .showStaff {
         margin-top: 160px;
     }
 }
