@@ -1,87 +1,87 @@
-$( document ).ready( function() {
+$(document).ready(function () {
 
     'use strict';
 
     // Navbar fadein
     // --------------------------------------------------
-    $( '.navbar' ).removeClass( 'animated' );
+    $('.navbar').removeClass('animated');
 
     // Responsive navigation
     // --------------------------------------------------
-    $( '.navbar-nav-toggle, .navbar-nav a' ).on( 'click', function() {
-        if ( $( '.navbar' ).css( 'z-index' ) === '4' ) {
-            $( '.navbar-nav' ).slideToggle();
-            $( '.navbar' ).toggleClass( 'open' );
+    $('.navbar-nav-toggle, .navbar-nav a').on('click', function () {
+        if ($('.navbar').css('z-index') === '4') {
+            $('.navbar-nav').slideToggle();
+            $('.navbar').toggleClass('open');
         }
-    } );
+    });
 
     // Wait for background images to load
     // --------------------------------------------------
-    $( '.background-image' ).each( function() {
+    $('.background-image').each(function () {
 
-        var $this = $( this ),
-            $preload = $( '<img/>' ),
-            background = $this.css( 'background-image' ).replace( /^url\(["']?/, '' ).replace( /["']?\)$/, '' );
+        var $this = $(this),
+            $preload = $('<img/>'),
+            background = $this.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
 
-        $preload.on( 'load', function() {
-            $this.attr( 'data-loaded', 'true' );
-        } );
+        $preload.on('load', function () {
+            $this.attr('data-loaded', 'true');
+        });
 
         $preload[ 0 ].src = background;
-    } );
+    });
 
 
     // Animate header
     // --------------------------------------------------
-    if ( $( 'body' ).hasClass( 'home' ) ) {
+    if ($('body').hasClass('home')) {
         headerAnimation();
     }
-    
+
 
     // Handle contact form
     // --------------------------------------------------
-    $( '.contact-form' ).on( 'submit', contactFormHandler );
+    $('.contact-form').on('submit', contactFormHandler);
 
     // Handle subscription form
     // --------------------------------------------------
-    $( '.subscription-form' ).on( 'submit', subscriptionFormHandler );
+    $('.subscription-form').on('submit', subscriptionFormHandler);
 
     // Contact form toggle
     // --------------------------------------------------
-    $( 'body' ).on( 'click', '.contact-toggle', function( event ) {
+    $('body').on('click', '.contact-toggle', function (event) {
         event.preventDefault();
-        $( 'body' ).toggleClass( 'open' );
-    } );
+        $('body').toggleClass('open');
+    });
 
     // Detect fixed navbar position
     // --------------------------------------------------
     fixedTopBar();
 
-} );
+});
 
 
 //
 // Wait for images to load, then enable smart-scroll
 // --------------------------------------------------
 
-$( window ).on( 'load', function() {
+$(window).on('load', function () {
 
     'use strict';
 
-    $( '#portfolio .slider' ).flexslider( {
+    $('#portfolio .slider').flexslider({
         pauseOnHover: true,
         directionNav: false
-    } );
+    });
 
-    $( '#testimonials .slider' ).flexslider( {
+    $('#testimonials .slider').flexslider({
         controlNav: false,
         directionNav: false,
-    } );
+    });
 
-    $( 'nav' ).smartScroll( {
-        offset: $( '.navbar' ).outerHeight()
-    } );
-} );
+    $('nav').smartScroll({
+        offset: $('.navbar').outerHeight()
+    });
+});
 
 
 //
@@ -92,35 +92,35 @@ function headerAnimation() {
 
     'use strict';
 
-    var $window = $( window ),
-        $intro = $( '.intro' ),
-        $copy = $( '.intro-copy' ),
-        $overlay = $( '.intro-overlay' ),
-        overlayColor = $overlay.css( 'background-color' ).match( /\d+/g ),
-        introHeight = $( '.intro' ).outerHeight();
+    var $window = $(window),
+        $intro = $('.intro'),
+        $copy = $('.intro-copy'),
+        $overlay = $('.intro-overlay'),
+        overlayColor = $overlay.css('background-color').match(/\d+/g),
+        introHeight = $('.intro').outerHeight();
 
-    $window.on( 'resize', function() {
-        introHeight = $( '.intro' ).outerHeight();
-    } );
+    $window.on('resize', function () {
+        introHeight = $('.intro').outerHeight();
+    });
 
-    $window.on( 'scroll', function() {
+    $window.on('scroll', function () {
 
         var scrollTop = $window.scrollTop(),
             copyFadePercent = 1 - scrollTop / introHeight,
             overlayFadePercent = 0.8 + scrollTop / introHeight / 10;
 
-        if ( scrollTop <= introHeight && $intro.attr( 'data-loaded' ) === 'true' ) {
-            $copy.css( {
+        if (scrollTop <= introHeight && $intro.attr('data-loaded') === 'true') {
+            $copy.css({
                 '-webkit-transform': 'translateY(' + scrollTop / 2.5 + 'px)',
                 '-ms-transform': 'translateY(' + scrollTop / 2.5 + 'px)',
                 'transform': 'translateY(' + scrollTop / 2.5 + 'px)',
                 'opacity': copyFadePercent
-            } );
+            });
 
-            $overlay.css( 'background-color', 'rgba(' + overlayColor[ 0 ] + ', ' + overlayColor[ 1 ] + ', ' + overlayColor[ 2 ] + ', ' + overlayFadePercent + ')' );
+            $overlay.css('background-color', 'rgba(' + overlayColor[ 0 ] + ', ' + overlayColor[ 1 ] + ', ' + overlayColor[ 2 ] + ', ' + overlayFadePercent + ')');
         }
 
-    } );
+    });
 }
 
 
@@ -133,19 +133,19 @@ function fixedTopBar() {
     'use strict';
 
     var offset,
-        $navbar = $( '.navbar' );
+        $navbar = $('.navbar');
 
-    $( window ).on( 'scroll.happytodesign', function() {
+    $(window).on('scroll.happytodesign', function () {
         offset = $navbar.offset().top;
-        if ( offset > 10 ) {
-            if ( $navbar.attr( 'data-scrolling' ) !== 'true' ) {
-                $navbar.attr( 'data-scrolling', 'true' );
+        if (offset > 10) {
+            if ($navbar.attr('data-scrolling') !== 'true') {
+                $navbar.attr('data-scrolling', 'true');
             }
         }
         else {
-            $navbar.attr( 'data-scrolling', 'false' );
+            $navbar.attr('data-scrolling', 'false');
         }
-    } ).trigger( 'scroll.happytodesign' );
+    }).trigger('scroll.happytodesign');
 }
 
 
@@ -153,7 +153,7 @@ function fixedTopBar() {
 // Handle contact form submission
 // --------------------------------------------------
 
-function contactFormHandler( event ) {
+function contactFormHandler(event) {
 
     'use strict';
 
@@ -161,44 +161,44 @@ function contactFormHandler( event ) {
     event.preventDefault();
 
     // Cache form for later use
-    var $form = $( '.contact-form' ),
-        $submit = $form.find( '[type="submit"]' );
+    var $form = $('.contact-form'),
+        $submit = $form.find('[type="submit"]');
 
-    $submit.prop( 'disabled', true ).data( 'original-text', $submit.text() ).text( $submit.data( 'loading-text' ) );
+    $submit.prop('disabled', true).data('original-text', $submit.text()).text($submit.data('loading-text'));
 
     // Send ajax request
-    $.ajax( {
+    $.ajax({
         url: 'includes/functions.php',
         type: 'post',
         dataType: 'json',
         data: $form.serialize() + '&action=contact',
-        success: function( msg ) {
+        success: function (msg) {
 
-            $submit.prop( 'disabled', false ).text( $submit.data( 'original-text' ) );
+            $submit.prop('disabled', false).text($submit.data('original-text'));
 
             // This needs heavy optimization
             var helperClass = 'helper',
-                $helperElement = $( '<p class="' + helperClass + '">' + msg.message + '</p>' ),
-                $form_control = $form.find( '[name="' + msg.field + '"]' ),
-                $form_group = $form_control.closest( '.form-group' );
+                $helperElement = $('<p class="' + helperClass + '">' + msg.message + '</p>'),
+                $form_control = $form.find('[name="' + msg.field + '"]'),
+                $form_group = $form_control.closest('.form-group');
 
-            $form_group.removeClass( function( index, css ) {
-                return ( css.match( /\bhas-\S+/g ) || [] ).join( ' ' );
-            } ).addClass( 'has-' + msg.status );
+            $form_group.removeClass(function (index, css) {
+                return ( css.match(/\bhas-\S+/g) || [] ).join(' ');
+            }).addClass('has-' + msg.status);
 
-            if ( $form_group.find( '.' + helperClass ).length ) {
-                $form_group.find( '.' + helperClass ).text( msg.message );
+            if ($form_group.find('.' + helperClass).length) {
+                $form_group.find('.' + helperClass).text(msg.message);
             }
             else {
-                if ( $form_control.parent( '.input-group' ).length ) {
-                    $helperElement.insertAfter( $form_control.parent( '.input-group' ) );
+                if ($form_control.parent('.input-group').length) {
+                    $helperElement.insertAfter($form_control.parent('.input-group'));
                 }
                 else {
-                    $helperElement.insertAfter( $form_control );
+                    $helperElement.insertAfter($form_control);
                 }
             }
         }
-    } );
+    });
 }
 
 
@@ -206,7 +206,7 @@ function contactFormHandler( event ) {
 // Handle subscription form submission
 // --------------------------------------------------
 
-function subscriptionFormHandler( event ) {
+function subscriptionFormHandler(event) {
 
     'use strict';
 
@@ -214,42 +214,42 @@ function subscriptionFormHandler( event ) {
     event.preventDefault();
 
     // Cache form for later use
-    var $form = $( '.subscription-form' ),
-        $submit = $form.find( '[type="submit"]' );
+    var $form = $('.subscription-form'),
+        $submit = $form.find('[type="submit"]');
 
-    $submit.prop( 'disabled', true ).data( 'original-text', $submit.text() ).text( $submit.data( 'loading-text' ) );
+    $submit.prop('disabled', true).data('original-text', $submit.text()).text($submit.data('loading-text'));
 
     // Send ajax request
-    $.ajax( {
+    $.ajax({
         url: 'includes/functions.php',
         type: 'post',
         dataType: 'json',
         data: $form.serialize() + '&action=newsletter',
-        success: function( msg ) {
+        success: function (msg) {
 
-            $submit.prop( 'disabled', false ).text( $submit.data( 'original-text' ) );
+            $submit.prop('disabled', false).text($submit.data('original-text'));
 
             // This needs heavy optimization
             var helperClass = 'helper',
-                $helperElement = $( '<p class="' + helperClass + '">' + msg.message + '</p>' ),
-                $form_control = $form.find( '[name="' + msg.field + '"]' ),
-                $form_group = $form_control.closest( '.form-group' );
+                $helperElement = $('<p class="' + helperClass + '">' + msg.message + '</p>'),
+                $form_control = $form.find('[name="' + msg.field + '"]'),
+                $form_group = $form_control.closest('.form-group');
 
-            $form_group.removeClass( function( index, css ) {
-                return ( css.match( /\bhas-\S+/g ) || [] ).join( ' ' );
-            } ).addClass( 'has-' + msg.status );
+            $form_group.removeClass(function (index, css) {
+                return ( css.match(/\bhas-\S+/g) || [] ).join(' ');
+            }).addClass('has-' + msg.status);
 
-            if ( $form_group.find( '.' + helperClass ).length ) {
-                $form_group.find( '.' + helperClass ).text( msg.message );
+            if ($form_group.find('.' + helperClass).length) {
+                $form_group.find('.' + helperClass).text(msg.message);
             }
             else {
-                if ( $form_control.parent( '.input-group' ).length ) {
-                    $helperElement.insertAfter( $form_control.parent( '.input-group' ) );
+                if ($form_control.parent('.input-group').length) {
+                    $helperElement.insertAfter($form_control.parent('.input-group'));
                 }
                 else {
-                    $helperElement.insertAfter( $form_control );
+                    $helperElement.insertAfter($form_control);
                 }
             }
         }
-    } );
+    });
 }

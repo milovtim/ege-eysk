@@ -22,7 +22,7 @@ task deploy(type: S3Sync) {
     configFile "synchronizer.properties"
 
     from "site/main/"
-    into "/repetitor/site"
+    into "/hello-ege/site"
 
     acl com.monochromeroad.gradle.plugin.aws.s3.ACL.PublicRead
 }
