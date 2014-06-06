@@ -26,3 +26,16 @@ task deploy(type: S3Sync) {
 
     acl com.monochromeroad.gradle.plugin.aws.s3.ACL.PublicRead
 }
+
+task reviewsHtml << {
+    ant.xslt(
+            in: file('project/reviews/reviews.xml'),
+            style: file('project/reviews/reviews.xsl'),
+            out: file('project/reviews/reviews.html')
+    )
+//    def reviewDivs = new XmlParser(false, false).parse(file('project/reviews/reviews.html'))
+//    int i = 0
+//    def result = reviewDivs.div.collectEntries {div -> ["review${i++}": div.text()] }
+//    println result
+//    new groovy.text.SimpleTemplateEngine().createTemplate(file('project/index.htm'))
+}

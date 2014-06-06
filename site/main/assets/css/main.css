@@ -354,10 +354,6 @@ h6 {
     }
 }
 
-.grid .tablet-4 {
-    text-align: center;
-}
-
 p {
     margin: 20px 0;
 }
@@ -1222,22 +1218,6 @@ html, body {
 /*  ------------------------------------------------------------  */
 /*  Showcase
 /*  ------------------------------------------------------------  */
-.showStaff {
-    font-size: 0;
-    border-bottom: 1px solid rgba(139, 153, 165, 0.25);
-    overflow: hidden;
-    position: relative;
-}
-
-.showStaff > * {
-    display: inline-block;
-    font-size: 1rem;
-}
-
-.showStaff > * {
-    vertical-align: middle;
-}
-
 @media (min-width: 769px) {
     .showStaff + .showStaff {
         margin-top: 160px;

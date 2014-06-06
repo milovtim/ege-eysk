@@ -1,0 +1,36 @@
+.showStaff {
+    font-size: 0;
+    border-bottom: 1px solid rgba(139, 153, 165, 0.25);
+    overflow: hidden;
+    position: relative;
+}
+
+.showStaff > * {
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.showStaff > * {
+    vertical-align: middle;
+}
+
+.review {
+    border-left: 1px solid rgb(128, 128, 128) ;
+    padding-left: 15px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+.review h6 {
+    text-align: right;
+}
+.review div.content-wrapper {
+    text-indent: 15px;
+    font-style: italic;
+    font-size: smaller;
+}
+
+.phone-main {
+    font-weight: 700;
+    font-stretch: semi-expanded;
+    color: red;
+}
