@@ -29,9 +29,11 @@ task deploy(type: S3Sync) {
 
 task reviewsHtml << {
     ant.xslt(
-            in: file('project/reviews/reviews.xml'),
-            style: file('project/reviews/reviews.xsl'),
-            out: file('project/reviews/reviews.html')
+        force: true,
+        includes: 'project/reviews/*.xml',
+//        in: file('project/reviews/reviews.xml'),
+        style: file('project/reviews/reviews.xsl'),
+        destdir: file('project/reviews/html')
     )
 //    def reviewDivs = new XmlParser(false, false).parse(file('project/reviews/reviews.html'))
 //    int i = 0

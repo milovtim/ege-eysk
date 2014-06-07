@@ -15,15 +15,18 @@
 }
 
 .review {
-    border-left: 1px solid rgb(128, 128, 128) ;
-    padding-left: 15px;
+    border: 1px dotted #330099;
+    border-radius: 10px;
+    padding: 0 15px 10px;
     margin-top: 30px;
     margin-bottom: 15px;
 }
 .review h6 {
     text-align: right;
+    margin-bottom: 0;
+    margin-top: 10px;
 }
-.review div.content-wrapper {
+.review div.content {
     text-indent: 15px;
     font-style: italic;
     font-size: smaller;
@@ -33,4 +36,8 @@
     font-weight: 700;
     font-stretch: semi-expanded;
     color: red;
+}
+
+.hidden-text {
+    cursor: pointer;
 }

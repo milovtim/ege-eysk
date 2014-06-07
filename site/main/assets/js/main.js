@@ -56,6 +56,15 @@ $(document).ready(function () {
     // --------------------------------------------------
     fixedTopBar();
 
+
+    $('.hidden-text').on('click', function() {
+        var phoneSpan = $(this);
+        var smallPhoneText = $('<small/>').text(Base64.decode(phoneSpan.attr('data-text')));
+        phoneSpan.removeClass('glyphicon glyphicon-phone')
+            .parent().append(smallPhoneText)
+            .end().unbind('click');
+    })
+
 });
 
 
