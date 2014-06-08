@@ -15,16 +15,16 @@
 }
 
 .review {
-    border: 1px dotted #330099;
+    border: 1px solid #ffffff;
     border-radius: 10px;
-    padding: 0 15px 10px;
+    background-color: #f4f4f4;
+    padding: 0 15px 15px;
     margin-top: 30px;
     margin-bottom: 15px;
 }
 .review h6 {
     text-align: right;
-    margin-bottom: 0;
-    margin-top: 10px;
+    margin: 10px 0;
 }
 .review div.content {
     text-indent: 15px;
