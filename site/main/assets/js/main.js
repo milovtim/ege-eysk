@@ -171,35 +171,11 @@ function contactFormHandler(event) {
 
     // Send ajax request
     $.ajax({
-        url: 'includes/functions.php',
+        url: 'http://backend.ege-eysk.ru/contact-form',
         type: 'post',
-        dataType: 'json',
-        data: $form.serialize() + '&action=contact',
-        success: function (msg) {
-
+        data: $form.serialize(),
+        success: function () {
             $submit.prop('disabled', false).text($submit.data('original-text'));
-
-            // This needs heavy optimization
-            var helperClass = 'helper',
-                $helperElement = $('<p class="' + helperClass + '">' + msg.message + '</p>'),
-                $form_control = $form.find('[name="' + msg.field + '"]'),
-                $form_group = $form_control.closest('.form-group');
-
-            $form_group.removeClass(function (index, css) {
-                return ( css.match(/\bhas-\S+/g) || [] ).join(' ');
-            }).addClass('has-' + msg.status);
-
-            if ($form_group.find('.' + helperClass).length) {
-                $form_group.find('.' + helperClass).text(msg.message);
-            }
-            else {
-                if ($form_control.parent('.input-group').length) {
-                    $helperElement.insertAfter($form_control.parent('.input-group'));
-                }
-                else {
-                    $helperElement.insertAfter($form_control);
-                }
-            }
         }
     });
 }
@@ -224,11 +200,10 @@ function subscriptionFormHandler(event) {
 
     // Send ajax request
     $.ajax({
-        url: 'http://backend.ege-eysk.ru',
+        url: 'http://backend.ege-eysk.ru/email/subscribe',
         type: 'post',
         data: $form.serialize(),
         success: function () {
-            $submit.prop('disabled', false).text($submit.data('original-text'));
-        }
+            $submit.prop('disabled', false).text($submit.data('original-text'));        }
     });
 }
