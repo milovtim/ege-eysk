@@ -167,7 +167,9 @@ function contactFormHandler(event) {
     var $form = $('.contact-form'),
         $submit = $form.find('[type="submit"]');
 
-    $submit.prop('disabled', true).data('original-text', $submit.text()).text($submit.data('loading-text'));
+    $submit.attr('disabled', 'disabled')
+        .data('original-text', $submit.text())
+        .text($submit.data('loading-text'));
 
     // Send ajax request
     $.ajax({
@@ -175,7 +177,8 @@ function contactFormHandler(event) {
         type: 'post',
         data: $form.serialize(),
         success: function () {
-            $submit.prop('disabled', false).text($submit.data('original-text'));
+            $submit.removeAttr('disabled')
+                .text($submit.data('original-text'));
         }
     });
 }
@@ -196,7 +199,9 @@ function subscriptionFormHandler(event) {
     var $form = $('.subscription-form'),
         $submit = $form.find('[type="submit"]');
 
-    $submit.prop('disabled', true).data('original-text', $submit.text()).text($submit.data('loading-text'));
+    $submit.attr('disabled', 'disabled')
+        .data('original-text', $submit.text())
+        .text($submit.data('loading-text'));
 
     // Send ajax request
     $.ajax({
@@ -204,6 +209,7 @@ function subscriptionFormHandler(event) {
         type: 'post',
         data: $form.serialize(),
         success: function () {
-            $submit.prop('disabled', false).text($submit.data('original-text'));        }
+            $submit.removeAttr('disabled')
+                .text($submit.data('original-text'));        }
     });
 }
