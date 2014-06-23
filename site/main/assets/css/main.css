@@ -1557,6 +1557,10 @@ html, body {
     border-bottom-color: rgba(51, 51, 63, 0.4);
 }
 
+.post-content p {
+    margin: 10px 0;
+}
+
 .post-meta {
     margin-top: 40px;
 }
