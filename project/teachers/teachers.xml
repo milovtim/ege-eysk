@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="teachers.xsl"?>
+<teachers>
+    <teacher>
+        <imageUrl>assets/img/teachers/teacher_phis.jpg</imageUrl>
+        <descr>
+            <fio>Елена Владленовна Милованова</fio>
+            <meta>учитель физики</meta>
+        </descr>
+        <cite>
+            <content link="http://lib.ru/ANEKDOTY/humprinc.txt_Ascii.txt">Учитель прикасается к вечности: никто не может сказать, где кончается его влияние</content>
+            <author>
+                <name>Генри Адамс</name>
+                <wikiLink>http://ru.wikipedia.org/wiki/%D0%90%D0%B4%D0%B0%D0%BC%D1%81,_%D0%93%D0%B5%D0%BD%D1%80%D0%B8_%D0%91%D1%80%D1%83%D0%BA%D1%81</wikiLink>
+            </author>
+        </cite>
+    </teacher>
+    <teacher>
+        <imageUrl>assets/img/teachers/teacher_bio.jpg</imageUrl>
+        <descr>
+            <fio>Елена Ивановна Драновская</fio>
+            <meta>учитель химии и биологии</meta>
+        </descr>
+        <cite>
+            <content link="http://ru.wikiquote.org/wiki/%D0%AD%D0%BB%D0%B1%D0%B5%D1%80%D1%82_%D0%93%D1%80%D0%B8%D0%BD_%D0%A5%D0%B0%D0%B1%D0%B1%D0%B0%D1%80%D0%B4">
+                Учитель - это человек, который выращивает две мысли там, где раньше росла одна
+            </content>
+            <author>
+                <name>Эльберт Хаббард</name>
+                <wikiLink>http://ru.wikiquote.org/wiki/%D0%AD%D0%BB%D0%B1%D0%B5%D1%80%D1%82_%D0%93%D1%80%D0%B8%D0%BD_%D0%A5%D0%B0%D0%B1%D0%B1%D0%B0%D1%80%D0%B4</wikiLink>
+            </author>
+        </cite>
+    </teacher>
+
+    <teacher>
+        <imageUrl>assets/img/teachers/teacher_en.jpg</imageUrl>
+        <descr>
+            <fio>Ольга Павловна Пронина</fio>
+            <meta>учитель английского языка</meta>
+        </descr>
+        <cite>
+            <content link="http://ru.wikipedia.org/wiki/%D0%9C%D0%B0%D0%BA%D0%B0%D1%80%D0%B5%D0%BD%D0%BA%D0%BE,_%D0%90%D0%BD%D1%82%D0%BE%D0%BD_%D0%A1%D0%B5%D0%BC%D1%91%D0%BD%D0%BE%D0%B2%D0%B8%D1%87">
+                Только живой пример воспитывает ребенка, а не слова, пусть самые хорошие, но не подкрепленные делом
+            </content>
+            <author>
+                <name>Антон Макаренко</name>
+                <wikiLink>http://ru.wikipedia.org/wiki/%D0%9C%D0%B0%D0%BA%D0%B0%D1%80%D0%B5%D0%BD%D0%BA%D0%BE,_%D0%90%D0%BD%D1%82%D0%BE%D0%BD_%D0%A1%D0%B5%D0%BC%D1%91%D0%BD%D0%BE%D0%B2%D0%B8%D1%87</wikiLink>
+            </author>
+        </cite>
+    </teacher>
+
+    <teacher>
+        <imageUrl>assets/img/teachers/teacher_hist.jpg</imageUrl>
+        <descr>
+            <fio>Елена Борисовна Андреева</fio>
+            <meta>учитель истории и обществознания</meta>
+        </descr>
+        <cite>
+            <content link="http://ru.wikiquote.org/wiki/%D0%AD%D0%BB%D0%B1%D0%B5%D1%80%D1%82_%D0%93%D1%80%D0%B8%D0%BD_%D0%A5%D0%B0%D0%B1%D0%B1%D0%B0%D1%80%D0%B4">
+                Учитель, могущий наделить своих воспитанников способностью находить радость в труде, должен быть увенчан лаврами
+            </content>
+            <author>
+                <name>Эльберт Хаббард</name>
+                <wikiLink>http://ru.wikiquote.org/wiki/%D0%AD%D0%BB%D0%B1%D0%B5%D1%80%D1%82_%D0%93%D1%80%D0%B8%D0%BD_%D0%A5%D0%B0%D0%B1%D0%B1%D0%B0%D1%80%D0%B4</wikiLink>
+            </author>
+        </cite>
+    </teacher>
+    <teacher>
+        <imageUrl>assets/img/teachers/teacher_rus.jpg</imageUrl>
+        <descr>
+            <fio>Ирина Владимировна Бондаренко</fio>
+            <meta>учитель русского языка и литературы</meta>
+        </descr>
+        <cite>
+            <content link="http://ru.wikipedia.org/wiki/%D0%AD%D0%BC%D0%B5%D1%80%D1%81%D0%BE%D0%BD,_%D0%A0%D0%B0%D0%BB%D1%8C%D1%84_%D0%A3%D0%BE%D0%BB%D0%B4%D0%BE">
+                Учитель – человек, который может делать трудные вещи лёгкими
+            </content>
+            <author>
+                <name>Ральф Эмельсон</name>
+                <wikiLink>http://ru.wikipedia.org/wiki/%D0%AD%D0%BC%D0%B5%D1%80%D1%81%D0%BE%D0%BD,_%D0%A0%D0%B0%D0%BB%D1%8C%D1%84_%D0%A3%D0%BE%D0%BB%D0%B4%D0%BE</wikiLink>
+            </author>
+        </cite>
+    </teacher>
+    <teacher>
+        <imageUrl>assets/img/teachers/teacher_phis1.jpg</imageUrl>
+        <descr>
+            <fio>Ольга Владимировна Каликина</fio>
+            <meta>учитель физики</meta>
+        </descr>
+        <cite>
+            <content link="http://www.livelib.ru/quote/568649">
+                Всему, что необходимо знать, научить нельзя, учитель может сделать только одно - указать дорогу
+            </content>
+            <author>
+                <name>Ричард Олдингтон</name>
+                <wikiLink>http://ru.wikipedia.org/wiki/%D0%9E%D0%BB%D0%B4%D0%B8%D0%BD%D0%B3%D1%82%D0%BE%D0%BD,_%D0%A0%D0%B8%D1%87%D0%B0%D1%80%D0%B4</wikiLink>
+            </author>
+        </cite>
+    </teacher>
+</teachers>

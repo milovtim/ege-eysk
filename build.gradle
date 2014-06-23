@@ -8,6 +8,7 @@ buildscript {
 }
 
 import com.monochromeroad.gradle.plugin.aws.s3.S3Sync
+import groovy.text.SimpleTemplateEngine
 
 ext {
     aws = [access: 'AKIAIV6TWXRXNOLRQN6A', secret: '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']
@@ -35,9 +36,20 @@ task reviewsHtml << {
         style: file('project/reviews/reviews.xsl'),
         destdir: file('project/reviews/html')
     )
-//    def reviewDivs = new XmlParser(false, false).parse(file('project/reviews/reviews.html'))
-//    int i = 0
-//    def result = reviewDivs.div.collectEntries {div -> ["review${i++}": div.text()] }
-//    println result
-//    new groovy.text.SimpleTemplateEngine().createTemplate(file('project/index.htm'))
+}
+
+task teachersHtml << {
+    def outFile = file 'project/teachers/teachers.html'
+    ant.xslt(
+        force: true,
+        in: 'project/teachers/teachers.xml',
+        out: outFile.path,
+        style: 'project/teachers/teachers.xsl'
+    )
+    file('site/main/index.html').withWriter {
+        new SimpleTemplateEngine()
+            .createTemplate(file('project/index.tmpl'))
+            .make(teachers: outFile.text)
+            .writeTo(it)
+    }
 }

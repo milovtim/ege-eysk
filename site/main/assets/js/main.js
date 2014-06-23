@@ -19,14 +19,14 @@ $(document).ready(function () {
     // --------------------------------------------------
     $('.background-image').each(function () {
         var $this = $(this),
-            $preload = $('<img/>'),
-            background = $this.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+            $imgToPreLoad = $('<img/>'),
+            backgroundUrl = $this.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
 
-        $preload.on('load', function () {
+        $imgToPreLoad.on('load', function () {
             $this.attr('data-loaded', 'true');
         });
 
-        $preload[ 0 ].src = background;
+        $imgToPreLoad[ 0 ].src = backgroundUrl;
     });
 
 
@@ -67,7 +67,6 @@ $(document).ready(function () {
 
 });
 
-
 //
 // Wait for images to load, then enable smart-scroll
 // --------------------------------------------------
@@ -85,7 +84,6 @@ $(window).on('load', function () {
         offset: $('.navbar').outerHeight()
     });
 });
-
 
 //
 // Animate header copy on scroll
