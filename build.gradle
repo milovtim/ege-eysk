@@ -1,14 +1,19 @@
 buildscript {
     repositories {
+        mavenCentral()
         jcenter()
     }
     dependencies {
+        classpath 'com.eriwen:gradle-js-plugin:1.12.1'
         classpath "com.monochromeroad.gradle-plugins:gradle-aws-s3-sync:0.5"
     }
 }
 
 import com.monochromeroad.gradle.plugin.aws.s3.S3Sync
 import groovy.text.SimpleTemplateEngine
+// helpers
+def filesOnlyFilter = { it.isFile() } as FileFilter
+def baseName = {String fileName -> fileName.split('\\.')[0]}
 
 ext {
     aws = [access: 'AKIAIV6TWXRXNOLRQN6A', secret: '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']
@@ -31,25 +36,42 @@ task deploy(type: S3Sync) {
 task reviewsHtml << {
     ant.xslt(
         force: true,
-        includes: 'project/reviews/*.xml',
-//        in: file('project/reviews/reviews.xml'),
+        includes: 'project/reviews/*Reviews.xml',
         style: file('project/reviews/reviews.xsl'),
         destdir: file('project/reviews/html')
     )
 }
 
 task teachersHtml << {
-    def outFile = file 'project/teachers/teachers.html'
     ant.xslt(
         force: true,
         in: 'project/teachers/teachers.xml',
-        out: outFile.path,
+        out: 'project/parts/teachers.html',
         style: 'project/teachers/teachers.xsl'
     )
-    file('site/main/index.html').withWriter {
-        new SimpleTemplateEngine()
-            .createTemplate(file('project/index.tmpl'))
-            .make(teachers: outFile.text)
-            .writeTo(it)
+}
+
+task buildPages << {
+    def templateExt = '.tmpl'
+    def dataModel = file('project/parts')
+        .listFiles(filesOnlyFilter)
+        .collectEntries {[(baseName(it.name)), it.text]}
+
+    def excludePartsKey = 'parts.exclude'
+    if (project.hasProperty(excludePartsKey))
+        project.property(excludePartsKey).split(",").each { dataModel.put(it, "")}
+    def templateEngine = new SimpleTemplateEngine()
+
+    //iterate on template files
+    file('project').listFiles(filesOnlyFilter)
+        .grep {it.name.endsWith(templateExt)}
+        .each { File templateFile ->
+            def resultFileName = "${baseName(templateFile.name)}.html"
+            file("site/main/$resultFileName").withWriter {
+                templateEngine
+                    .createTemplate(templateFile)
+                    .make(dataModel)
+                    .writeTo(it)
+            }
     }
 }

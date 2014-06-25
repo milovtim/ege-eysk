@@ -98,10 +98,10 @@ function headerAnimation() {
         $copy = $('.intro-copy'),
         $overlay = $('.intro-overlay'),
         overlayColor = $overlay.css('background-color').match(/\d+/g),
-        introHeight = $('.intro').outerHeight();
+        introHeight = $intro.outerHeight();
 
     $window.on('resize', function () {
-        introHeight = $('.intro').outerHeight();
+        introHeight = $intro.outerHeight();
     });
 
     $window.on('scroll', function () {

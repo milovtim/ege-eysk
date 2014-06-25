@@ -819,7 +819,7 @@ textarea.input {
 
 .navbar.fixed[data-scrolling="true"] {
     background-color: rgba(17, 17, 21, 0.95);
-    padding: 15px 0;
+    padding: 10px 0;
 }
 
 .navbar.animated {
@@ -1157,6 +1157,12 @@ html, body {
     background-color: rgba(17, 17, 26, 0.8);
 }
 
+.intro-cite {
+    position: absolute;
+    width: 30%;
+    bottom: 7%;
+    right: 10px;
+}
 /*  ------------------------------------------------------------  */
 /*  Slider
 /*  ------------------------------------------------------------  */
