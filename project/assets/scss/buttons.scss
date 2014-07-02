@@ -1,0 +1,44 @@
+/*  ------------------------------------------------------------  */
+/*  Button class
+/*  Can be used with <a>, <input>, <button>
+/*  ------------------------------------------------------------  */
+
+@mixin button-variant( $background-color ) {
+    background-color: $background-color;
+
+    &:focus,
+    &:hover {
+        background-color: lighten( $background-color, 5% );
+    }
+}
+
+.button {
+    @include button-variant( #8b99a5 );
+
+    border: 0;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    line-height: 26px;
+    padding: 9px 20px;
+    transition: background-color 0.2s ease-in-out;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    &:focus,
+    &:hover {
+        color: #fff;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: 0.6;
+        pointer-events: none;
+    }
+}
+
+.button-primary {
+    @include button-variant( #389b17 );
+}

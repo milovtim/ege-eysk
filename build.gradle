@@ -76,17 +76,20 @@ task buildPages << {
             }
     }
 }
+//copy assets to target dir
+buildPages.dependsOn 'copyAssets'
 
 def excludePartsDefinedInCommandLine(Map dataModel) {
     def excludePartsKey = 'parts.exclude'
     if (project.hasProperty(excludePartsKey))
-        project.property(excludePartsKey).split(",").each { dataModel.put(it, "")}
+        project.excludePartsKey.split(",").each { dataModel.put(it, "")}
 
     def productionOnlyParts = ['vimeoVideo', 'yandexMetrica']
-    if (project.hasProperty('profile') && project.property('profile') == 'dev')
+    if (project.hasProperty('profile') && project.profile == 'dev')
         dataModel.putAll(productionOnlyParts.collectEntries {[it, ""]})
 }
 
-task hello << {
-    println project.profile
+task copyAssets(type: Copy) {
+    from 'project/assets'
+    into "site/${project.profile}/assets"
 }

@@ -1,0 +1,102 @@
+/*  ------------------------------------------------------------  */
+/*  Typography styles
+/*  ------------------------------------------------------------  */
+
+h1, h2, h3, h4, h5, h6 {
+    color: #33333f;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    margin: 20px 0;
+
+    small {
+        color: #8b99a5;
+        display: block;
+        font-weight: 300;
+        line-height: 1.45;
+        letter-spacing: normal;
+    }
+}
+
+h1 { 
+    font-size: 42px;
+
+    small { 
+        font-size: 50%;
+        margin-top: 15px;
+    }  
+}
+h2 { 
+    font-size: 34px;
+
+    small {
+        font-size: 55%;
+        margin-top: 5px;
+    }
+}
+h3 { 
+    font-size: 30px; 
+}
+h4 { 
+    font-size: 26px;
+}
+h5 {
+    font-size: 22px; 
+}
+h6 { 
+    font-size: 18px;
+}
+
+@media ( min-width: $screen-desktop-min ) {
+    h1 { 
+        font-size: 54px;
+
+        small {
+            margin-top: 10px;
+        }
+    }
+    h2 { 
+        font-size: 42px; 
+    }
+    h3 { 
+        font-size: 36px; 
+    }
+    h4 { 
+        font-size: 30px;
+    }
+    h5 {
+        font-size: 24px; 
+    }
+    h6 { 
+        font-size: 18px;
+    }
+}
+
+p {
+    margin: 20px 0;
+}
+
+blockquote {
+    border-left: 4px solid rgba( #8b99a5, 0.25 );
+    color: #8b99a5;
+    margin-left: 0;
+    padding-left: 20px;
+}
+
+.muted {
+    color: #8b99a5;
+}
+
+.meta {
+    color: #8b99a5;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0.5;
+    text-transform: uppercase;
+    transition: opacity 0.2s ease-in-out;
+
+    &:hover {
+        opacity: 1;
+    }
+}
