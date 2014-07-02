@@ -17,6 +17,8 @@ def baseName = {String fileName -> fileName.split('\\.')[0]}
 
 ext {
     aws = [access: 'AKIAIV6TWXRXNOLRQN6A', secret: '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']
+    //set up profile (-Pprofile={profileName} in command line)
+    profile = project.hasProperty('profile') ? project.profile: 'prod'
 }
 
 task deploy(type: S3Sync) {
@@ -27,7 +29,7 @@ task deploy(type: S3Sync) {
 
     configFile "synchronizer.properties"
 
-    from "site/main"
+    from "site/prod"
     into "ege-eysk.ru"
 
     acl com.monochromeroad.gradle.plugin.aws.s3.ACL.PublicRead
@@ -57,9 +59,8 @@ task buildPages << {
         .listFiles(filesOnlyFilter)
         .collectEntries {[(baseName(it.name)), it.text]}
 
-    def excludePartsKey = 'parts.exclude'
-    if (project.hasProperty(excludePartsKey))
-        project.property(excludePartsKey).split(",").each { dataModel.put(it, "")}
+    excludePartsDefinedInCommandLine(dataModel)
+
     def templateEngine = new SimpleTemplateEngine()
 
     //iterate on template files
@@ -67,11 +68,25 @@ task buildPages << {
         .grep {it.name.endsWith(templateExt)}
         .each { File templateFile ->
             def resultFileName = "${baseName(templateFile.name)}.html"
-            file("site/main/$resultFileName").withWriter {
+            file("site/${project.profile}/$resultFileName").withWriter {
                 templateEngine
                     .createTemplate(templateFile)
                     .make(dataModel)
                     .writeTo(it)
             }
     }
+}
+
+def excludePartsDefinedInCommandLine(Map dataModel) {
+    def excludePartsKey = 'parts.exclude'
+    if (project.hasProperty(excludePartsKey))
+        project.property(excludePartsKey).split(",").each { dataModel.put(it, "")}
+
+    def productionOnlyParts = ['vimeoVideo', 'yandexMetrica']
+    if (project.hasProperty('profile') && project.property('profile') == 'dev')
+        dataModel.putAll(productionOnlyParts.collectEntries {[it, ""]})
+}
+
+task hello << {
+    println project.profile
 }
