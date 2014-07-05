@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
 
     'use strict';
 
@@ -56,15 +56,20 @@ $(document).ready(function () {
     // --------------------------------------------------
     fixedTopBar();
 
-
-    $('.hidden-text').on('click', function() {
-        var phoneSpan = $(this);
-        var smallPhoneText = $('<small/>').text(Base64.decode(phoneSpan.attr('data-text')));
-        phoneSpan.removeClass('glyphicon glyphicon-phone')
-            .parent().append(smallPhoneText)
-            .end().unbind('click');
+    $('.container .review').each(function() {
+        if ($(this).height() > 100) {
+            var $readMoreLink = $('<a href="#"/>')
+                .text('Читать полностью')
+                .click(function(e) {
+                    e.preventDefault();
+                    $(this).parent().siblings('.short').removeClass('short')
+                });
+            $(this)
+                .append($('<p class="readMore">').append($readMoreLink))
+                .find('.content').append('<p class="gradient">&nbsp;</p>')
+                .addClass('short')
+        }
     })
-
 });
 
 //
@@ -108,7 +113,7 @@ function headerAnimation() {
 
         var scrollTop = $window.scrollTop(),
             copyFadePercent = 1 - scrollTop / introHeight,
-            overlayFadePercent = 0.8 + scrollTop / introHeight / 10;
+            overlayFadePercent = 0.6 + scrollTop / introHeight / 10;
 
         if (scrollTop <= introHeight && $intro.attr('data-loaded') === 'true') {
             $copy.css({

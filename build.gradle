@@ -5,21 +5,47 @@ buildscript {
     }
     dependencies {
         classpath 'com.eriwen:gradle-js-plugin:1.12.1'
+        classpath 'com.eriwen:gradle-css-plugin:1.11.1'
         classpath "com.monochromeroad.gradle-plugins:gradle-aws-s3-sync:0.5"
     }
 }
 
-import com.monochromeroad.gradle.plugin.aws.s3.S3Sync
-import groovy.text.SimpleTemplateEngine
-// helpers
-def filesOnlyFilter = { it.isFile() } as FileFilter
-def baseName = {String fileName -> fileName.split('\\.')[0]}
+apply plugin: 'css'
 
 ext {
     aws = [access: 'AKIAIV6TWXRXNOLRQN6A', secret: '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']
     //set up profile (-Pprofile={profileName} in command line)
     profile = project.hasProperty('profile') ? project.profile: 'prod'
 }
+
+css.source {
+    dev {
+        css {
+            srcDir "project/assets/css"
+            include "*.css"
+            exclude 'all.css'
+        }
+    }
+}
+// Specify a collection of files to be combined, then minified and finally GZip compressed.
+combineCss {
+    source = css.source.dev.css.files
+    dest = "project/assets/css/all.css"
+}
+
+//minifyCss {
+//    source = combineCss
+//    dest = "${buildDir}/all-min.css"
+//    yuicompressor { // Optional
+//        lineBreakPos = -1
+//    }
+//}
+
+import com.monochromeroad.gradle.plugin.aws.s3.S3Sync
+import groovy.text.SimpleTemplateEngine
+// helpers
+def filesOnlyFilter = { it.isFile() } as FileFilter
+def baseName = {String fileName -> fileName.split('\\.')[0]}
 
 task deploy(type: S3Sync) {
     description = "Deploys Repetitor bucket"
@@ -93,3 +119,4 @@ task copyAssets(type: Copy) {
     from 'project/assets'
     into "site/${project.profile}/assets"
 }
+copyAssets.dependsOn 'combineCss'
