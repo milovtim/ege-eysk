@@ -81,8 +81,7 @@ task teachersHtml << {
 
 task buildPages << {
     def templateExt = '.tmpl'
-    def dataModel = file('project/parts')
-        .listFiles(filesOnlyFilter)
+    def dataModel = fileTree('project/parts')
         .collectEntries {[(baseName(it.name)), it.text]}
 
     excludePartsDefinedInCommandLine(dataModel)

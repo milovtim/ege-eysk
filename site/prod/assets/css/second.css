@@ -17,7 +17,7 @@
 .review {
     border: 1px solid #ffffff;
     border-radius: 10px;
-    background-color: #f4f4f4;
+    background-color: rgb(244, 244, 244);
     padding: 0 15px 15px;
     margin-top: 30px;
     margin-bottom: 15px;
@@ -31,13 +31,40 @@
     font-style: italic;
     font-size: smaller;
 }
+    .review .short {
+        max-height: 100px;
+        position: relative;
+        overflow: hidden;
+    }
+    .review .short .gradient {
+        display: block;
+    }
+    .review .gradient {
+        display: none;
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 100%; height: 30px;
+        margin: 0; padding: 0;
+
+        background-image: -webkit-gradient(linear, top, bottom, color-stop(0, rgb(255, 255, 255)),color-stop(1, rgb(244, 244, 244)));
+        background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgb(244, 244, 244));
+        background-image: -moz-linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(244, 244, 244));
+        background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0), rgb(244, 244, 244));
+        background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0), rgb(244, 244, 244));
+    }
+    .review .short + .readMore {
+        display: block;
+    }
+    .review .readMore {
+        display: none;
+        padding: 0;
+        text-align: center;
+        margin: -8px 0 -10px;
+    }
+
 
 .phone-main {
     font-weight: 700;
     font-stretch: semi-expanded;
     color: red;
-}
-
-.hidden-text {
-    cursor: pointer;
 }
