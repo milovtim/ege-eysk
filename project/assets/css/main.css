@@ -1117,7 +1117,7 @@ html, body {
 
 .intro-copy {
     position: relative;
-    top: 50%;
+    top: 30%;
     z-index: 1;
 }
 
@@ -1137,7 +1137,7 @@ html, body {
 }
 
 .intro-overlay {
-    background-color: #11111a;
+    background-color: rgb(56, 82, 100);
     position: absolute;
     top: 0;
     left: 0;
@@ -1148,7 +1148,7 @@ html, body {
 }
 
 [data-loaded="true"] .intro-overlay {
-    background-color: rgba(17, 17, 26, 0.6);
+    background-color: rgba(56, 82, 100, 0.6);
 }
 
 .intro-cite {

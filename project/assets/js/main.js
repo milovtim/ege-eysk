@@ -69,7 +69,24 @@ $(function () {
                 .find('.content').append('<p class="gradient">&nbsp;</p>')
                 .addClass('short')
         }
-    })
+    });
+
+
+    var $cf = $('#subject_flow_list'),
+        subjectsNum = $cf.children('p').length,
+        initLeft = parseInt($cf.css('left')),
+        step = 135;
+
+    var i = setInterval(function() {
+        $cf.css('left', function(i, val) {
+            var old = parseInt(val)
+            if (Math.abs(initLeft - old)/135 >= (subjectsNum - 1)) {
+                return initLeft;
+            }
+            return old - step
+        })
+    }, 2000)
+    console.log(i)
 });
 
 //
@@ -112,14 +129,15 @@ function headerAnimation() {
     $window.on('scroll', function () {
 
         var scrollTop = $window.scrollTop(),
+            positionYAxisDivider = 2.5,
             copyFadePercent = 1 - scrollTop / introHeight,
             overlayFadePercent = 0.6 + scrollTop / introHeight / 10;
 
         if (scrollTop <= introHeight && $intro.attr('data-loaded') === 'true') {
             $copy.css({
-                '-webkit-transform': 'translateY(' + scrollTop / 2.5 + 'px)',
-                '-ms-transform': 'translateY(' + scrollTop / 2.5 + 'px)',
-                'transform': 'translateY(' + scrollTop / 2.5 + 'px)',
+                '-webkit-transform': 'translateY(' + scrollTop / positionYAxisDivider + 'px)',
+                '-ms-transform': 'translateY(' + scrollTop / positionYAxisDivider + 'px)',
+                'transform': 'translateY(' + scrollTop / positionYAxisDivider + 'px)',
                 'opacity': copyFadePercent
             });
 

@@ -81,7 +81,7 @@ task teachersHtml << {
 
 task buildPages << {
     def templateExt = '.tmpl'
-    def dataModel = fileTree('project/parts')
+    def dataModel = fileTree('project/parts').files
         .collectEntries {[(baseName(it.name)), it.text]}
 
     excludePartsDefinedInCommandLine(dataModel)
@@ -119,3 +119,11 @@ task copyAssets(type: Copy) {
     into "site/${project.profile}/assets"
 }
 copyAssets.dependsOn 'combineCss'
+
+task hello << {
+    def i = fileTree('project/parts').files
+            .collectEntries {[(it.name), it.text]}
+            .each { println it }
+//    println i.class
+
+}
