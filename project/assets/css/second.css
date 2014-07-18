@@ -95,13 +95,14 @@
 }
 
 .circle_block {
+    display: block;
     margin: 0 auto;
     overflow: hidden;
     text-align: center;
     width: 180px;
     height: 180px;
-    background-color: rgb(0, 128, 0);
     border-radius: 90px;
+    background-color: rgb(0, 128, 0);
     position: relative;
 }
 
@@ -119,6 +120,7 @@
 }
 
 #subject_flow_list {
+    display: block;
     width: 5000px;
     position: absolute;
     top: 33px;
@@ -131,7 +133,8 @@
     transition: all 1s;
 }
 
-#subject_flow_list p {
+#subject_flow_list span {
+    display: block;
     float: left;
     margin: 0 45px 0 0;
     width: 90px;

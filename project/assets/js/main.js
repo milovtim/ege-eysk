@@ -73,7 +73,7 @@ $(function () {
 
 
     var $cf = $('#subject_flow_list'),
-        subjectsNum = $cf.children('p').length,
+        subjectsNum = $cf.children().length,
         initLeft = parseInt($cf.css('left')),
         step = 135;
 
@@ -86,7 +86,6 @@ $(function () {
             return old - step
         })
     }, 2000)
-    console.log(i)
 });
 
 //
