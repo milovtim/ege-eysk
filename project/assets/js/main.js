@@ -90,21 +90,22 @@ $(function () {
     //animation
     var main = new TimelineMax(),
         $monitor = $('#featuresMonitor'),
-        centerX = $monitor.width() / 2,
-        centerY = $monitor.height() / 2,
         $udobno = $('#udobno'),
         $vigodno = $('#vigodno'),
         $legko = $('#legko'),
         $repeatAnimationIcon = $('#repeatAnimation');
 
-    main
-        .add(sideMove($udobno, 'left'))
-        .add(udobno())
-        .add(sideMove($vigodno, 'right'))
-        .add(vigodno())
-        .add(sideMove($legko, 'left'))
-        .add(legko())
-        .set($('.monitorFeature:eq(3)'), {css: {display: 'block'}});
+    if (!window.navigator.userAgent.match(/Mobi/)) {
+      main
+          .add(sideMove($udobno, 'left'))
+          .add(udobno())
+          .add(sideMove($vigodno, 'right'))
+          .add(vigodno())
+          .add(sideMove($legko, 'left'))
+          .add(legko())
+          .set($('.monitorFeature:eq(3)'), {css: {display: 'block'}});
+    }
+
     function sideMove(jqObj, direction) {
       var tl = new TimelineLite(),
           splitTxt = new SplitText(jqObj.selector, {type: 'chars'}),
@@ -281,7 +282,7 @@ function headerAnimation() {
             'opacity': copyFadePercent
           };
           $copy.css(shiftBottom);
-          $('.features_block').css(shiftBottom);
+          $('.features_block').css('opacity', Math.pow(shiftBottom.opacity, 2));
           $overlay.css('background-color', 'rgba(' + overlayColor[ 0 ] + ', ' + overlayColor[ 1 ] + ', ' + overlayColor[ 2 ] + ', ' + overlayFadePercent + ')');
         }
 
