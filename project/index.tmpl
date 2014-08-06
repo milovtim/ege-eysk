@@ -15,6 +15,8 @@
         <script src="assets/js/jquery.smartscroll.js"></script>
         <script src="assets/js/jquery.flexSlider.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="assets/js/TweenMax.min.js"></script>
+        <script src="assets/js/SplitText.min.js"></script>
     </head>
 
     <body class="home">
@@ -51,42 +53,52 @@
             <div class="intro background-image">
                 <div class="intro-copy">
                     <h1>
-                        Подготовка к ЕГЭ и ГИА по всем предметам в Ейске
+                        Подготовка к ЕГЭ и ГИА в Ейске
                         <small>Выпускаем 100-бальников ежегодно</small>
                     </h1>
                 </div><!-- .intro-copy -->
                 <div class="features_block">
-                    <div class="feature">
-                        <span class="circle_block">
-                            <img src="assets/img/convenientFeature.png" alt="Удобно"/>
-                            <span id="subject_flow_list">
-                                <span>русский язык</span>
-                                <span>литература</span>
-                                <span>математика</span>
-                                <span>физика</span>
-                                <span>химия</span>
-                                <span>биология</span>
-                                <span>английский язык</span>
-                                <span>общество-<wbr>знание</span>
-                                <span>история</span>
-                            </span>
-                        </span>
-                        <h3>Удобно</h3>
-                    </div>
-                    <div class="feature">
-                        <span class="circle_block">
-                            <p style="margin-bottom: 19px; margin-top: 30px;">250 р</p>
-                            <hr style="border-color: white;">
-                            <p style="margin-top: 15px;">час</p>
-                        </span>
-                        <h3>Выгодно</h3>
-                    </div>
-                    <div class="feature">
-                        <span class="circle_block">
-                            <img src="assets/img/provedFeature.png" />
-                            <!--<h4 style="font-size: 22px; color: #ffffff; margin-top: 25px">(918) 232-40-55</h4>-->
-                        </span>
-                        <h3>Проверено</h3>
+                    <div id="featuresMonitor">
+                        <div id="monitorScreen">
+                            <div class="monitorFeature">
+                                <div id="udobno">Удобно</div>
+                                <div id="allSubjOnePoint">
+                                    <p>Все предметы</p>
+                                    <p>в одном месте</p>
+                                </div>
+                                <div id="subjectList1">
+                                    <div>русский язык</div>
+                                    <div>литература</div>
+                                    <div>математика</div>
+                                    <div>физика</div>
+                                    <div>химия</div>
+                                    <div>биология</div>
+                                    <div>английский язык</div>
+                                    <div>обществознание</div>
+                                    <div>история</div>
+                                </div>
+                            </div>
+                            <div class="monitorFeature">
+                                <div id="vigodno">Выгодно</div>
+                                <img class="studentSvg"
+                                     src="assets/img/human.svg"
+                                     alt="Ученик" width="20"/>
+                                <img class="rubleSvg"
+                                     src="assets/img/ruble_sign.svg"
+                                     alt="Рубль" width="30"/>
+                                <div id="miniGroupLessons">Занятия в минигруппах</div>
+                                <div id="miniGroupCheaper">менее затратны</div>
+                            </div>
+                            <div class="monitorFeature">
+                                <div id="legko">Легко</div>
+                                <div id="friendlyAtmosphere">Непринуждённая обстановка</div>
+                                <div id="greatSchedule">Оптимальное расписание</div>
+                                <div id="strictAgenda">Отработанная учебная программа</div>
+                            </div>
+                            <div class="monitorFeature">
+                                <img src="assets/img/roundArrow.png" alt="Repeat" id="repeatAnimation"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="intro-overlay"></div>

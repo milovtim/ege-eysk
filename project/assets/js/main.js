@@ -85,7 +85,148 @@ $(function () {
             }
             return old - step
         })
-    }, 2000)
+    }, 2000);
+
+    //animation
+    var main = new TimelineMax(),
+        $monitor = $('#featuresMonitor'),
+        centerX = $monitor.width() / 2,
+        centerY = $monitor.height() / 2,
+        $udobno = $('#udobno'),
+        $vigodno = $('#vigodno'),
+        $legko = $('#legko'),
+        $repeatAnimationIcon = $('#repeatAnimation');
+
+    main
+        .add(sideMove($udobno, 'left'))
+        .add(udobno())
+        .add(sideMove($vigodno, 'right'))
+        .add(vigodno())
+        .add(sideMove($legko, 'left'))
+        .add(legko())
+        .set($('.monitorFeature:eq(3)'), {css: {display: 'block'}});
+    function sideMove(jqObj, direction) {
+      var tl = new TimelineLite(),
+          splitTxt = new SplitText(jqObj.selector, {type: 'chars'}),
+          chars = splitTxt.chars,
+          shift = direction == 'left'? -200: 200;
+      tl.set(jqObj.parent('.monitorFeature'), {css: {display: 'block'}, immediateRender: false});
+      for (var i = 0; i < chars.length; ++i) {
+        tl.from(chars[i], 1.2, {autoAlpha: 0, x: shift}, 0.2 * (direction == 'left'? i: (chars.length - i)))
+      }
+      tl.to(jqObj, 1.5, {top: 10, ease: Elastic.easeOut});
+      return tl;
+    }
+
+    function hideBlockOnComplete(timeline, $block) {
+      var delayBeforeHide = '+=1.5';
+      timeline
+          .to($block, 0.5, {rotationX: -360, autoAlpha: 0, y: '+=50'}, delayBeforeHide)
+          .set($block.parent('.monitorFeature'), {css: {display: 'none'}}, delayBeforeHide);
+    }
+
+    function udobno() {
+      var tl = newTimeLine(),
+          shiftSign = 1,
+          splitTxt = new SplitText('#allSubjOnePoint', {type: 'chars, words'}),
+          words = splitTxt.words,
+          chars = splitTxt.chars,
+          $subjListBlock = $('#subjectList1'),
+          $subjList = $subjListBlock.find('div'),
+          i;
+      for (i = 0; i < words.length; ++i) {
+        shiftSign = (i % 2 == 0)? 1: -1;
+        tl.from(words[i], 1, {autoAlpha: 0, y: 300 * shiftSign, ease: Bounce.easeOut}, 0.1 * shiftSign * i);
+      }
+      for (i = 0; i < chars.length; ++i) {
+        tl.to(chars[i], 0.5, {y: 30, scaleX: 0.1, opacity: 0}, 3 - Math.random());
+      }
+      tl.fromTo($subjListBlock, 5, { top: 400 }, { top: -400, ease: Linear.easeNone});
+      tl.staggerFrom($subjList, 1, {autoAlpha: 0, x: 200, ease: Back.easeOut.config(5)}, 0.2, '-=4.5');
+      tl.staggerTo($subjList, 1.2, {autoAlpha: 0}, 0.2, '-=3');
+      hideBlockOnComplete(tl, $udobno);
+      return tl;
+    }
+
+    function vigodno() {
+      var tl = newTimeLine(),
+          $groups = $('#miniGroupLessons'),
+          $groupsCheap = $('#miniGroupCheaper'),
+          $ruble = $('.rubleSvg'),
+          $rublesGroup = [$ruble],
+          $student = $('.studentSvg'),
+          $studentGroup = [$student],
+          $monitorFeature = $student.parent('.monitorFeature'),
+          hidden = {autoAlpha: 0},
+          visible = {autoAlpha: 1};
+
+      tl
+          .from($groups, 0.6, hidden)
+          .to($groups, 0.7, {x: -143, y: -50, scale: 0.7});
+      tl
+          .from($groupsCheap, 1, hidden)
+          .to($groupsCheap, 0.4, {x: 125, y: -50, scale: 0.8});
+      tl.addLabel('icons', 1.4);
+
+      var i,
+          rubleCount = 12;
+      for (i = 0; i < rubleCount; ++i) {
+        var $groupRuble = $ruble.clone().appendTo($monitorFeature);
+        TweenLite.set($groupRuble, {
+          left: 70 +  Math.cos(2 * Math.PI * i / rubleCount)* 15 + '%',
+          top: 165 + Math.sin(2 * Math.PI * i / rubleCount) * 50
+        });
+        $rublesGroup.push($groupRuble);
+      }
+
+      for (i = 0; i < 3; ++i) {
+        var $groupStudent = $student.clone().appendTo($monitorFeature);
+        $studentGroup.push($groupStudent);
+      }
+      TweenLite.set($studentGroup[1], {x: -50, autoAlpha: 0});
+      TweenLite.set($studentGroup[2], {x: 50, autoAlpha: 0});
+      TweenLite.set($studentGroup[3], {y: -80, autoAlpha: 0});
+
+      tl.from($student, 0.5, {autoAlpha: 0, top: 150, left: 50}, 'icons');
+      tl.staggerFrom($rublesGroup, 0.5, {autoAlpha: 0, top: 200, left: 520}, 0.1, 'icons');
+      tl.addLabel('icons1');
+      tl.staggerTo($studentGroup.slice(1), 2, {autoAlpha: 1}, 0.3, 'icons1');
+      tl.staggerTo($rublesGroup.slice(1), 2, {autoAlpha: 0, scaleY: 0.1}, 0.1, 'icons1');
+
+      hideBlockOnComplete(tl, $vigodno);
+      return tl;
+    }
+
+    function legko() {
+      var tl = newTimeLine(),
+          $atmosphere = $('#friendlyAtmosphere'),
+          $agenda = $('#strictAgenda'),
+          $schedule = $('#greatSchedule'),
+          hidden = {autoAlpha: 0},
+          fromHiddenAndScale = {autoAlpha: 0, scale: 3, ease: Cubic.easeOut};
+
+      tl.from($atmosphere, 2, fromHiddenAndScale);
+      tl.to($atmosphere, 0.5, {top: 250});
+      tl.from($agenda, 2, fromHiddenAndScale);
+      tl.to($agenda, 0.5, {top: 172});
+      tl.from($schedule, 2, fromHiddenAndScale);
+      hideBlockOnComplete(tl, $legko);
+      return tl;
+    }
+
+    function newTimeLine() {
+      return new TimelineLite();
+    }
+
+    $repeatAnimationIcon.on({
+      'click': function() {
+        $(this).parent().hide();
+        main.restart();
+      },
+      'mouseenter': function() {
+        TweenLite.from(this, 1, {rotation: -360});
+      }
+    });
 });
 
 //
@@ -133,14 +274,15 @@ function headerAnimation() {
             overlayFadePercent = 0.6 + scrollTop / introHeight / 10;
 
         if (scrollTop <= introHeight && $intro.attr('data-loaded') === 'true') {
-            $copy.css({
-                '-webkit-transform': 'translateY(' + scrollTop / positionYAxisDivider + 'px)',
-                '-ms-transform': 'translateY(' + scrollTop / positionYAxisDivider + 'px)',
-                'transform': 'translateY(' + scrollTop / positionYAxisDivider + 'px)',
-                'opacity': copyFadePercent
-            });
-
-            $overlay.css('background-color', 'rgba(' + overlayColor[ 0 ] + ', ' + overlayColor[ 1 ] + ', ' + overlayColor[ 2 ] + ', ' + overlayFadePercent + ')');
+          var shiftBottom = {
+            '-webkit-transform': 'translateY(' + scrollTop / positionYAxisDivider + 'px)',
+            '-ms-transform': 'translateY(' + scrollTop / positionYAxisDivider + 'px)',
+            'transform': 'translateY(' + scrollTop / positionYAxisDivider + 'px)',
+            'opacity': copyFadePercent
+          };
+          $copy.css(shiftBottom);
+          $('.features_block').css(shiftBottom);
+          $overlay.css('background-color', 'rgba(' + overlayColor[ 0 ] + ', ' + overlayColor[ 1 ] + ', ' + overlayColor[ 2 ] + ', ' + overlayFadePercent + ')');
         }
 
     });

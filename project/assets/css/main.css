@@ -954,26 +954,23 @@ textarea.input {
 }
 
 @media (max-width: 768px) {
-    .navbar-nav {
-        margin: 20px -20px 0;
-    }
-}
-
-@media (max-width: 768px) and (min-width: 481px) {
-    .navbar-nav {
-        margin: 20px -30px 0;
-    }
-}
-
-@media (max-width: 768px) {
     .navbar-nav ul li {
         display: block;
     }
 
     .navbar-nav ul li a,
     .navbar-nav ul li .button {
-        padding: 10px 20px;
+        padding: 10px 10px;
     }
+    .navbar-nav ul li .button {
+        border-radius: 0;
+        font-weight: normal;
+        margin-top: 10px;
+        width: 100%;
+    }
+    .navbar-nav {
+         margin: 20px -20px 0;
+     }
 }
 
 @media (max-width: 768px) and (min-width: 481px) {
@@ -981,18 +978,12 @@ textarea.input {
     .navbar-nav ul li .button {
         padding: 10px 30px;
     }
-}
-
-@media (max-width: 768px) {
-    .navbar-nav ul li .button {
-        border-radius: 0;
-        font-weight: normal;
-        margin-top: 10px;
-        width: 100%;
+    .navbar-nav {
+        margin: 20px -30px 0;
     }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1024px) {
     .navbar-nav ul {
         font-size: 0;
     }
@@ -1030,10 +1021,9 @@ textarea.input {
 /*  Responsive navbar navigation
 /*  This is separated from navbar for readability
 /*  ------------------------------------------------------------  */
-@media (min-width: 769px) {
+@media (min-width: 1024px) {
     .navbar .container {
         font-size: 0;
-        font-size: 0.04px;
         text-align: justify;
     }
 
@@ -1049,6 +1039,16 @@ textarea.input {
         display: inline-block;
         width: 100%;
     }
+
+    .navbar-header {
+        display: inline-block;
+    }
+    .navbar-nav-toggle {
+        display: none;
+    }
+    .navbar-nav {
+        display: inline-block !important;
+    }
 }
 
 .navbar-header h6 {
@@ -1056,19 +1056,16 @@ textarea.input {
     color: rgb(216, 212, 211);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
     .navbar-header {
         font-size: 0;
-        font-size: 0.04px;
         text-align: justify;
     }
 
     .navbar-header > * {
         display: inline-block;
         font-size: 1rem;
-    }
-
-    .navbar-header > * {
+        vertical-align: middle;
         text-align: left;
     }
 
@@ -1077,35 +1074,11 @@ textarea.input {
         display: inline-block;
         width: 100%;
     }
-
-    .navbar-header > * {
-        vertical-align: middle;
-    }
-}
-
-@media (min-width: 769px) {
-    .navbar-header {
-        display: inline-block;
-    }
-}
-
-@media (min-width: 769px) {
-    .navbar-nav-toggle {
-        display: none;
-    }
-}
-
-@media (max-width: 768px) {
     .navbar-nav {
         display: none;
     }
 }
 
-@media (min-width: 769px) {
-    .navbar-nav {
-        display: inline-block !important;
-    }
-}
 
 /*  ------------------------------------------------------------  */
 /*  Large intro with background image
@@ -1118,13 +1091,14 @@ html, body {
     background: #11111a url("../img/ege-intro-bg.jpg") center bottom no-repeat;
     background-size: cover;
     height: 100%;
+    min-height: 763px;
     padding: 0 20px;
     position: relative;
 }
 
 .intro-copy {
     position: relative;
-    top: 30%;
+    top: 200px;
     z-index: 1;
 }
 
