@@ -960,7 +960,7 @@ textarea.input {
 
     .navbar-nav ul li a,
     .navbar-nav ul li .button {
-        padding: 10px 10px;
+        padding: 10px 7px;
     }
     .navbar-nav ul li .button {
         border-radius: 0;
@@ -976,14 +976,14 @@ textarea.input {
 @media (max-width: 768px) and (min-width: 481px) {
     .navbar-nav ul li a,
     .navbar-nav ul li .button {
-        padding: 10px 30px;
+        padding: 10px 5px;
     }
     .navbar-nav {
         margin: 20px -30px 0;
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 769px) {
     .navbar-nav ul {
         font-size: 0;
     }
@@ -1001,7 +1001,7 @@ textarea.input {
     .navbar-nav ul li a {
         font-size: 20px;
         font-weight: 600;
-        padding: 7px 20px;
+        padding: 7px 10px;
     }
 
     .navbar-nav ul li .button {
@@ -1021,7 +1021,7 @@ textarea.input {
 /*  Responsive navbar navigation
 /*  This is separated from navbar for readability
 /*  ------------------------------------------------------------  */
-@media (min-width: 1024px) {
+@media (min-width: 769px) {
     .navbar .container {
         font-size: 0;
         text-align: justify;
@@ -1056,7 +1056,7 @@ textarea.input {
     color: rgb(216, 212, 211);
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 768px) {
     .navbar-header {
         font-size: 0;
         text-align: justify;
@@ -1096,11 +1096,16 @@ html, body {
     position: relative;
 }
 
-@media (max-height: 890px) {
+@media (max-height: 850px) {
     .intro-copy {
-        top: 175px !important;
+        top: 190px !important;
     }
 }
+
+.mobile .intro-copy {
+    top: 50%;
+}
+
 .intro-copy {
     position: relative;
     top: 20%;
