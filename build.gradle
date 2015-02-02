@@ -12,8 +12,8 @@ buildscript {
 
 apply plugin: 'css'
 
+apply from: 'aws_creds.gradle'
 ext {
-    aws = [access: 'AKIAIV6TWXRXNOLRQN6A', secret: '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']
     //set up profile (-Pprofile={profileName} in command line)
     profile = project.hasProperty('profile') ? project.profile: 'prod'
 }
@@ -121,9 +121,8 @@ task copyAssets(type: Copy) {
 copyAssets.dependsOn 'combineCss'
 
 task hello << {
-    def i = fileTree('project/parts').files
-            .collectEntries {[(it.name), it.text]}
-            .each { println it }
-//    println i.class
-
+//    def i = fileTree('project/parts').files
+//            .collectEntries {[(it.name), it.text]}
+//            .each { println it }
+    println aws.access
 }
