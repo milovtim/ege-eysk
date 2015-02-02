@@ -13,7 +13,7 @@ buildscript {
 apply plugin: 'css'
 
 ext {
-    aws = [access: 'AKIAIV6TWXRXNOLRQN6A', secret: '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']
+    aws = [access: '***', secret: '***']
     //set up profile (-Pprofile={profileName} in command line)
     profile = project.hasProperty('profile') ? project.profile: 'prod'
 }
