@@ -1,4 +1,4 @@
 ./.cache/*
-./site/prod/
-./site/dev/
+.site/
+./.gradle/
 *.iml
