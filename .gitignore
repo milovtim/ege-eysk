@@ -28,3 +28,4 @@ crashlytics.properties
 crashlytics-build.properties
 
 jbake/output
+cache/
