@@ -1,4 +1,7 @@
-./.cache/*
-.site/
-./.gradle/
+.cache/*
+site/
+.gradle/
 *.iml
+.idea/
+
+aws_creds.gradle

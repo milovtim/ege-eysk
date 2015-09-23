@@ -1,0 +1,6 @@
+ext {
+    aws = [
+        access: 'AKIAJEVMROH7KMMBJDPA',
+        secret: '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'
+    ]
+}

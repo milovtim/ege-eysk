@@ -8,6 +8,7 @@
 
 ------------------------------------------------------------  */
 @import url(http://fonts.googleapis.com/css?family=Lobster|Open+Sans:400italic,400,300,600,700&subset=latin,cyrillic);
+
 /*  ------------------------------------------------------------  */
 /*  Normalize.css v3.0.0
 /*  http://git.io/normalize
@@ -112,7 +113,7 @@ pre {
 }
 
 code, kbd, pre, samp {
-    font-family: monospace,monospace;
+    font-family: monospace, monospace;
     font-size: 1em;
 }
 
@@ -726,6 +727,7 @@ textarea.input {
         width: 100%;
     }
 }
+
 /*  ------------------------------------------------------------  */
 /*  Utilities
 /*  ------------------------------------------------------------  */
@@ -847,7 +849,7 @@ textarea.input {
 @media (max-width: 768px) {
     .navbar {
         z-index: 4;
-    /* We use this to communicate with js */
+        /* We use this to communicate with js */
     }
 
     .navbar.open.inverse {
@@ -858,7 +860,7 @@ textarea.input {
 .navbar-logo {
     border-bottom: 0;
     color: #44444f;
-    font-size: 24px !important;
+    font-size: 26px !important;
     font-weight: 700;
     line-height: 1;
     letter-spacing: -1px;
@@ -887,7 +889,7 @@ textarea.input {
     background: none;
     border: 0;
     display: block;
-  /* Remove extra margin from below the <button> element */
+    /* Remove extra margin from below the <button> element */
     padding: 6px 5px 5px;
 }
 
@@ -952,41 +954,32 @@ textarea.input {
 }
 
 @media (max-width: 768px) {
-    .navbar-nav {
-        margin: 20px -20px 0;
-    }
-}
-
-@media (max-width: 768px) and (min-width: 481px) {
-    .navbar-nav {
-        margin: 20px -30px 0;
-    }
-}
-
-@media (max-width: 768px) {
     .navbar-nav ul li {
         display: block;
     }
 
     .navbar-nav ul li a,
-  .navbar-nav ul li .button {
-        padding: 10px 20px;
+    .navbar-nav ul li .button {
+        padding: 10px 7px;
     }
-}
-
-@media (max-width: 768px) and (min-width: 481px) {
-    .navbar-nav ul li a,
-  .navbar-nav ul li .button {
-        padding: 10px 30px;
-    }
-}
-
-@media (max-width: 768px) {
     .navbar-nav ul li .button {
         border-radius: 0;
         font-weight: normal;
         margin-top: 10px;
         width: 100%;
+    }
+    .navbar-nav {
+         margin: 20px -20px 0;
+     }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+    .navbar-nav ul li a,
+    .navbar-nav ul li .button {
+        padding: 10px 5px;
+    }
+    .navbar-nav {
+        margin: 20px -30px 0;
     }
 }
 
@@ -1006,9 +999,9 @@ textarea.input {
     }
 
     .navbar-nav ul li a {
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 600;
-        padding: 7px 20px;
+        padding: 7px 10px;
     }
 
     .navbar-nav ul li .button {
@@ -1031,7 +1024,6 @@ textarea.input {
 @media (min-width: 769px) {
     .navbar .container {
         font-size: 0;
-        font-size: 0.04px;
         text-align: justify;
     }
 
@@ -1047,21 +1039,33 @@ textarea.input {
         display: inline-block;
         width: 100%;
     }
+
+    .navbar-header {
+        display: inline-block;
+    }
+    .navbar-nav-toggle {
+        display: none;
+    }
+    .navbar-nav {
+        display: inline-block !important;
+    }
+}
+
+.navbar-header h6 {
+    margin: 0;
+    color: rgb(216, 212, 211);
 }
 
 @media (max-width: 768px) {
     .navbar-header {
         font-size: 0;
-        font-size: 0.04px;
         text-align: justify;
     }
 
     .navbar-header > * {
         display: inline-block;
         font-size: 1rem;
-    }
-
-    .navbar-header > * {
+        vertical-align: middle;
         text-align: left;
     }
 
@@ -1070,35 +1074,11 @@ textarea.input {
         display: inline-block;
         width: 100%;
     }
-
-    .navbar-header > * {
-        vertical-align: middle;
-    }
-}
-
-@media (min-width: 769px) {
-    .navbar-header {
-        display: inline-block;
-    }
-}
-
-@media (min-width: 769px) {
-    .navbar-nav-toggle {
-        display: none;
-    }
-}
-
-@media (max-width: 768px) {
     .navbar-nav {
         display: none;
     }
 }
 
-@media (min-width: 769px) {
-    .navbar-nav {
-        display: inline-block !important;
-    }
-}
 
 /*  ------------------------------------------------------------  */
 /*  Large intro with background image
@@ -1111,13 +1091,24 @@ html, body {
     background: #11111a url("../img/ege-intro-bg.jpg") center bottom no-repeat;
     background-size: cover;
     height: 100%;
+    min-height: 763px;
     padding: 0 20px;
     position: relative;
 }
 
+@media (max-height: 850px) {
+    .intro-copy {
+        top: 190px !important;
+    }
+}
+
+.mobile .intro-copy {
+    top: 50%;
+}
+
 .intro-copy {
     position: relative;
-    top: 50%;
+    top: 20%;
     z-index: 1;
 }
 
@@ -1137,7 +1128,7 @@ html, body {
 }
 
 .intro-overlay {
-    background-color: #11111a;
+    background-color: rgb(56, 82, 100);
     position: absolute;
     top: 0;
     left: 0;
@@ -1148,7 +1139,7 @@ html, body {
 }
 
 [data-loaded="true"] .intro-overlay {
-    background-color: rgba(17, 17, 26, 0.6);
+    background-color: rgba(56, 82, 100, 0.6);
 }
 
 .intro-cite {
@@ -1157,6 +1148,7 @@ html, body {
     bottom: 7%;
     right: 10px;
 }
+
 /*  ------------------------------------------------------------  */
 /*  Slider
 /*  ------------------------------------------------------------  */

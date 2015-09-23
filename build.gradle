@@ -4,48 +4,19 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.eriwen:gradle-js-plugin:1.12.1'
-        classpath 'com.eriwen:gradle-css-plugin:1.11.1'
         classpath "com.monochromeroad.gradle-plugins:gradle-aws-s3-sync:0.5"
+        classpath 'org.freemarker:freemarker:2.3.23'
+        classpath 'org.yaml:snakeyaml:1.16'
     }
 }
-
-apply plugin: 'css'
 
 apply from: 'aws_creds.gradle'
-ext {
-    //set up profile (-Pprofile={profileName} in command line)
-    profile = project.hasProperty('profile') ? project.profile: 'prod'
-}
-
-css.source {
-    dev {
-        css {
-            srcDir "project/assets/css"
-            include "*.css"
-            exclude 'all.css'
-        }
-    }
-}
-// Specify a collection of files to be combined, then minified and finally GZip compressed.
-combineCss {
-    source = css.source.dev.css.files
-    dest = "project/assets/css/all.css"
-}
-
-//minifyCss {
-//    source = combineCss
-//    dest = "${buildDir}/all-min.css"
-//    yuicompressor { // Optional
-//        lineBreakPos = -1
-//    }
-//}
 
 import com.monochromeroad.gradle.plugin.aws.s3.S3Sync
-import groovy.text.SimpleTemplateEngine
-// helpers
-def filesOnlyFilter = { it.isFile() } as FileFilter
-def baseName = {String fileName -> fileName.split('\\.')[0]}
+import freemarker.template.Template
+import freemarker.template.TemplateExceptionHandler
+import org.yaml.snakeyaml.Yaml
+import freemarker.template.Configuration
 
 task deploy(type: S3Sync) {
     description = "Deploys Repetitor bucket"
@@ -61,68 +32,43 @@ task deploy(type: S3Sync) {
     acl com.monochromeroad.gradle.plugin.aws.s3.ACL.PublicRead
 }
 
-task reviewsHtml << {
-    ant.xslt(
-        force: true,
-        includes: 'project/reviews/*Reviews.xml',
-        style: file('project/reviews/reviews.xsl'),
-        destdir: file('project/reviews/html')
-    )
+task down(type: S3Sync) {
+    description = "Deploys Repetitor bucket"
+
+    accessKey aws.access
+    secretKey aws.secret
+
+    configFile "synchronizer.properties"
+
+    from "ege-eysk.ru"
+    into "site/backup"
+
+    action 'DOWN'
+
+    acl com.monochromeroad.gradle.plugin.aws.s3.ACL.PublicRead
 }
 
-task teachersHtml << {
-    ant.xslt(
-        force: true,
-        in: 'project/teachers/teachers.xml',
-        out: 'project/parts/teachers.html',
-        style: 'project/teachers/teachers.xsl'
-    )
-}
+class SiteBuilder implements Plugin<Project> {
 
-task buildPages << {
-    def templateExt = '.tmpl'
-    def dataModel = fileTree('project/parts').files
-        .collectEntries {[(baseName(it.name)), it.text]}
+    @Override
+    void apply(Project target) {
+        target.task('sitebldr') << {
+            def yml = new Yaml()
+            Map<String, String> data = yml.load(target.file('megasite/content/common.yaml').newInputStream()) as Map<String, String>
 
-    excludePartsDefinedInCommandLine(dataModel)
+            def fcfg = initFreemarker(target)
+            Template template = fcfg.getTemplate('main.ftl')
+            template.process(data, new OutputStreamWriter(System.out))
+        }
+    }
 
-    def templateEngine = new SimpleTemplateEngine()
-
-    //iterate on template files
-    file('project').listFiles(filesOnlyFilter)
-        .grep {it.name.endsWith(templateExt)}
-        .each { File templateFile ->
-            def resultFileName = "${baseName(templateFile.name)}.html"
-            file("site/${project.profile}/$resultFileName").withWriter {
-                templateEngine
-                    .createTemplate(templateFile)
-                    .make(dataModel)
-                    .writeTo(it)
-            }
+    private Configuration initFreemarker(project) {
+        def config = new Configuration(Configuration.VERSION_2_3_23)
+        config.directoryForTemplateLoading = project.file('megasite/layouts')
+        config.defaultEncoding = 'UTF-8'
+        config.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER)
+        config
     }
 }
-//copy assets to target dir
-buildPages.dependsOn 'copyAssets'
 
-def excludePartsDefinedInCommandLine(Map dataModel) {
-    def excludePartsKey = 'parts.exclude'
-    if (project.hasProperty(excludePartsKey))
-        project.excludePartsKey.split(",").each { dataModel.put(it, "")}
-
-    def productionOnlyParts = ['vimeoVideo', 'yandexMetrica']
-    if (project.hasProperty('profile') && project.profile == 'dev')
-        dataModel.putAll(productionOnlyParts.collectEntries {[it, ""]})
-}
-
-task copyAssets(type: Copy) {
-    from 'project/assets'
-    into "site/${project.profile}/assets"
-}
-copyAssets.dependsOn 'combineCss'
-
-task hello << {
-//    def i = fileTree('project/parts').files
-//            .collectEntries {[(it.name), it.text]}
-//            .each { println it }
-    println aws.access
-}
+apply plugin: SiteBuilder
