@@ -5,3 +5,6 @@ site/
 .idea/
 
 aws_creds.gradle
+
+buildSrc/.gradle
+buildSrc/build
