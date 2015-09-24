@@ -1,0 +1,9 @@
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.freemarker:freemarker:2.3.23'
+    compile 'org.yaml:snakeyaml:1.16'
+    testCompile 'junit:junit:4.12'
+}

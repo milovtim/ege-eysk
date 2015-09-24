@@ -5,18 +5,12 @@ buildscript {
     }
     dependencies {
         classpath "com.monochromeroad.gradle-plugins:gradle-aws-s3-sync:0.5"
-        classpath 'org.freemarker:freemarker:2.3.23'
-        classpath 'org.yaml:snakeyaml:1.16'
     }
 }
 
 apply from: 'aws_creds.gradle'
 
 import com.monochromeroad.gradle.plugin.aws.s3.S3Sync
-import freemarker.template.Template
-import freemarker.template.TemplateExceptionHandler
-import org.yaml.snakeyaml.Yaml
-import freemarker.template.Configuration
 
 task deploy(type: S3Sync) {
     description = "Deploys Repetitor bucket"
@@ -48,27 +42,10 @@ task down(type: S3Sync) {
     acl com.monochromeroad.gradle.plugin.aws.s3.ACL.PublicRead
 }
 
-class SiteBuilder implements Plugin<Project> {
 
-    @Override
-    void apply(Project target) {
-        target.task('sitebldr') << {
-            def yml = new Yaml()
-            Map<String, String> data = yml.load(target.file('megasite/content/common.yaml').newInputStream()) as Map<String, String>
+apply plugin: ru.milovtim.SiteBuilder
 
-            def fcfg = initFreemarker(target)
-            Template template = fcfg.getTemplate('main.ftl')
-            template.process(data, new OutputStreamWriter(System.out))
-        }
-    }
-
-    private Configuration initFreemarker(project) {
-        def config = new Configuration(Configuration.VERSION_2_3_23)
-        config.directoryForTemplateLoading = project.file('megasite/layouts')
-        config.defaultEncoding = 'UTF-8'
-        config.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER)
-        config
-    }
+staticSite {
+    layoutDir = 'megasite/layouts'
+    dataDir = 'megasite/data'
 }
-
-apply plugin: SiteBuilder
