@@ -46,6 +46,7 @@ task down(type: S3Sync) {
 apply plugin: ru.milovtim.SiteBuilder
 
 staticSite {
-    layoutDir = 'megasite/layouts'
+    templatesDir = 'megasite/templates'
+    layoutDir = 'layouts'
     dataDir = 'megasite/data'
 }

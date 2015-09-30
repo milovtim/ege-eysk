@@ -1,0 +1,54 @@
+<div class="footer">
+    <div class="container">
+
+        <div class="medium-margin">
+
+            <div class="grid">
+                <div class="tablet-6 desktop-3">
+                    <h6>Адрес</h6>
+                    <p class="muted">
+                        г.Ейск<br>
+                        ул. Ясенская, 2-В
+                    </p>
+                </div>
+
+                <div class="tablet-6 desktop-4">
+                    <h6>Контакты</h6>
+                    <p class="muted">
+                        8-918-232-40-55<br>
+                        <a href="mailto:milovtim@ya.ru">milovtim at ya dot ru</a>
+                    </p>
+                </div>
+
+                <div class="tablet-12 desktop-5">
+                    <h6>Подписаться на новости</h6>
+
+                    <!-- Subscription form -->
+                    <form class="subscription-form">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="input" name="email_address" type="text" placeholder="Email">
+                                                <span class="input-group-button">
+                                                    <button class="button" type="submit" data-loading-text="Минуточку...">Подписаться</button>
+                                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- .grid -->
+
+        </div><!-- .medium-margin -->
+        <hr>
+        <div class="grid grid-centered grid-justified">
+            <div class="tiny-margin">
+                © 2010–2014 Учебный центр "Репетитор"
+            </div>
+            <div class="tiny-margin">
+                <a href="http://twitter.com" class="icon-social-twitter"></a>
+                <a href="http://facebook.com" class="icon-social-facebook"></a>
+                <a href="http://instagram.com" class="icon-social-instagram"></a>
+                <a href="http://plus.google.com" class="icon-social-google"></a>
+            </div>
+        </div><!-- .grid -->
+    </div>
+</div>

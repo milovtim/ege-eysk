@@ -24,26 +24,32 @@ class SiteBuilder implements Plugin<Project> {
 
             def dataFiles = proj.file(proj.staticSite.dataDir).listFiles({it.name.endsWith('.yaml')} as FileFilter)
 
-            proj.files(dataFiles)
-            .each { File dataFile ->
-                Map<String, Object> data
-                dataFile.withInputStream {
-                    data = yml.load(it) as Map<String, Object>
-                }
+            proj.files(dataFiles).each { File dataFile ->
+                Map<String, Object> pageInfoMap = dataFile.withInputStream(yml.&load) as Map<String, Object>
+
+                def pageInfo = new PageInfo(layoutName: pageInfoMap.layout, partNames: pageInfoMap.parts as List)
+
+                preparePageLayout(pageInfo, freemrkrConfig)
 
                 def baseName = dataFile.name.split('\\.')[0]
-                Template template = freemrkrConfig.getTemplate("${baseName}.ftl")
-                template.process(data, new OutputStreamWriter(System.out))
+//                Template template = freemrkrConfig.getTemplate("${baseName}.ftl")
+                template.process(pageInfo, new OutputStreamWriter(System.out))
             }
 
         }
     }
 
+    Template preparePageLayout(PageInfo pageInfo, Configuration configuration) {
+        configuration.getTemplate("${project.staticSite.layoutDir}/${pageInfo.layoutName}")
+    }
+
     private Configuration initFreemarker() {
         def config = new Configuration(Configuration.VERSION_2_3_23)
-        config.directoryForTemplateLoading = project.file(project.staticSite.layoutDir)
-        config.defaultEncoding = 'UTF-8'
-        config.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER)
+        config.with {
+            directoryForTemplateLoading = project.file(project.staticSite.templatesDir)
+            defaultEncoding = 'UTF-8'
+            templateExceptionHandler = TemplateExceptionHandler.RETHROW_HANDLER
+        }
         config
     }
 }

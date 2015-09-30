@@ -1,0 +1,6 @@
+page:
+  layout: 'main'
+  parts:
+    - head
+    - content
+    - footer
