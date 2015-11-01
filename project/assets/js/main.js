@@ -299,6 +299,12 @@ function fixedTopBar() {
 }
 
 
+var actionHandler = function ($submittedElement) {
+    $submittedElement
+        .removeAttr('disabled')
+        .text($submittedElement.data('original-text'));
+}
+
 //
 // Handle contact form submission
 // --------------------------------------------------
@@ -318,16 +324,16 @@ function contactFormHandler(event) {
       .data('original-text', $submit.text())
       .text($submit.data('loading-text'));
 
+    setTimeout(actionHandler, 2000, $submit)
   // Send ajax request
-  $.ajax({
-    url: 'http://backend.ege-eysk.ru/contact-form',
-    type: 'post',
-    data: $form.serialize(),
-    success: function () {
-      $submit.removeAttr('disabled')
-          .text($submit.data('original-text'));
-    }
-  });
+  //$.ajax({
+  //  url: 'http://backend.ege-eysk.ru/contact-form',
+  //  type: 'post',
+  //  data: $form.serialize(),
+  //  success: function () {
+  //    actionHandler($submit)
+  //  }
+  //});
 }
 
 
@@ -350,14 +356,15 @@ function subscriptionFormHandler(event) {
       .data('original-text', $submit.text())
       .text($submit.data('loading-text'));
 
-  // Send ajax request
-  $.ajax({
-    url: 'http://backend.ege-eysk.ru/email/subscribe',
-    type: 'post',
-    data: $form.serialize(),
-    success: function () {
-      $submit.removeAttr('disabled')
-          .text($submit.data('original-text'));
-    }
-  });
+    setTimeout(actionHandler, 2000, $submit)
+
+    // Send ajax request
+  //$.ajax({
+  //  url: 'http://backend.ege-eysk.ru/email/subscribe',
+  //  type: 'post',
+  //  data: $form.serialize(),
+  //  success: function () {
+  //    actionHandler($submit)
+  //  }
+  //});
 }

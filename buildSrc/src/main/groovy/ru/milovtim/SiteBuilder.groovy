@@ -10,6 +10,13 @@ import org.yaml.snakeyaml.Yaml
 class SiteBuilder implements Plugin<Project> {
 
     Project project
+    BuilderSettings settings
+
+    Yaml yml = new Yaml()
+
+    SiteBuilder() {
+        this.yml = new Yaml()
+    }
 
     @Override
     void apply(Project proj) {
@@ -17,9 +24,9 @@ class SiteBuilder implements Plugin<Project> {
 
         proj.extensions.create('staticSite', BuilderSettings)
 
-        proj.task('sitebldr') << {
+        proj.tasks.create("sitebldr", {})
 
-            def yml = new Yaml()
+        proj.task('sitebldr') << {
             def freemrkrConfig = initFreemarker()
 
             def dataFiles = proj.file(proj.staticSite.dataDir).listFiles({it.name.endsWith('.yaml')} as FileFilter)
@@ -29,7 +36,7 @@ class SiteBuilder implements Plugin<Project> {
 
                 def pageInfo = new PageInfo(layoutName: pageInfoMap.layout, partNames: pageInfoMap.parts as List)
 
-                preparePageLayout(pageInfo, freemrkrConfig)
+                def layout = preparePageLayout(pageInfo, freemrkrConfig)
 
                 def baseName = dataFile.name.split('\\.')[0]
 //                Template template = freemrkrConfig.getTemplate("${baseName}.ftl")
