@@ -7,23 +7,10 @@ buildscript {
 //        classpath 'com.eriwen:gradle-js-plugin:1.12.1'
 //        classpath 'com.eriwen:gradle-css-plugin:1.11.1'
 //        classpath "com.monochromeroad.gradle-plugins:gradle-aws-s3-sync:0.5"
-
         classpath "jp.classmethod.aws:gradle-aws-plugin:0.30"
         classpath "org.jbake:jbake-gradle-plugin:1.2.0"
     }
 }
-
-plugins {
-    id 'org.jbake.site' version '1.2.0'
-}
-
-jbake {
-    version  = '2.6.1'
-}
-
-
-//apply plugin: 'css'
-//apply plugin: 'jbake'
 
 apply from: 'aws_creds.gradle'
 ext {
@@ -31,6 +18,11 @@ ext {
     profile = project.hasProperty('profile') ? project.profile: 'prod'
 }
 
+jbake {
+    version  = '2.6.1'
+}
+
+//apply plugin: 'jbake'
 //css.source {
 //    dev {
 //        css {

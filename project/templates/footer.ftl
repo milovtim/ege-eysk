@@ -1,0 +1,3 @@
+<#--$yandexMetrica-->
+</body>
+</html>
