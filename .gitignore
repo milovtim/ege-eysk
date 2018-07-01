@@ -1,4 +1,5 @@
-./.cache/*
 .site/
-./.gradle/
+.gradle/
 *.iml
+project/cache/
+project/output/

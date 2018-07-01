@@ -5,7 +5,7 @@
 	<div class="content-wrapper">
 		<#include "index/intro.ftl">
 
-		${content.body}
+		<#include "index/index-page-content.ftl">
 	</div>
 
 	<#include "contact-form.ftl">

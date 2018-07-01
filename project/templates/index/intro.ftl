@@ -29,10 +29,10 @@
                         <div class="monitorFeature">
                             <div id="vigodno">Выгодно</div>
                             <img class="studentSvg"
-                                 src="assets/img/human.svg"
+                                 src="img/human.svg"
                                  alt="Ученик" width="20"/>
                             <img class="rubleSvg"
-                                 src="assets/img/ruble_sign.svg"
+                                 src="img/ruble_sign.svg"
                                  alt="Рубль" width="30"/>
                             <div id="miniGroupLessons">Занятия в минигруппах</div>
                             <div id="miniGroupCheaper">более эффективны</div>
@@ -44,7 +44,7 @@
                             <div id="easy3">Классные педагоги</div>
                         </div>
                         <div class="monitorFeature">
-                            <img src="assets/img/roundArrow.png" alt="Repeat" id="repeatAnimation"/>
+                            <img src="img/roundArrow.png" alt="Repeat" id="repeatAnimation"/>
                         </div>
                     </div>
                 </div>
